@@ -1,0 +1,1269 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<script>
+  (function () {
+    try {
+      var stored = localStorage.getItem('theme');
+      var theme = stored || (window.matchMedia && window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark');
+      if (theme === 'light') document.documentElement.setAttribute('data-theme', 'light');
+    } catch (e) {}
+  })();
+</script>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Yatukulan Vivekanandan</title>
+<meta name="description" content="Computer Engineering Co-op at McMaster University — hardware and embedded systems.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=Caveat:wght@600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #000000;
+    --text: #ffffff;
+    --text-dim: #999999;
+    --text-dimmer: #5c5c5c;
+    --rule: #2b2b2b;
+    --nav-bg: rgba(0, 0, 0, 0.85);
+    --max-width: 760px;
+    color-scheme: dark;
+  }
+
+  :root[data-theme="light"] {
+    --bg: #f4f3ee;
+    --text: #14140f;
+    --text-dim: #55534a;
+    --text-dimmer: #918f83;
+    --rule: #d9d7cc;
+    --nav-bg: rgba(244, 243, 238, 0.85);
+    color-scheme: light;
+  }
+
+  * { box-sizing: border-box; }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  ::view-transition-image-pair(root) {
+    isolation: isolate;
+  }
+
+  ::view-transition-old(root),
+  ::view-transition-new(root) {
+    animation: none;
+    mix-blend-mode: normal;
+    display: block;
+  }
+
+  ::view-transition-old(root) { z-index: 1; }
+  ::view-transition-new(root) { z-index: 2; }
+
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'JetBrains Mono', 'Courier New', monospace;
+    font-weight: 300;
+    font-size: 16px;
+    line-height: 1.75;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+  }
+
+  h1, h2, h3 {
+    font-family: 'JetBrains Mono', 'Courier New', monospace;
+    font-weight: 500;
+    letter-spacing: -0.01em;
+    margin: 0;
+  }
+
+  a {
+    color: inherit;
+  }
+
+  /* ---------- Nav ---------- */
+
+  nav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 100;
+    display: flex;
+    justify-content: center;
+    padding: 24px 32px;
+    background: var(--nav-bg);
+    backdrop-filter: blur(6px);
+    -webkit-backdrop-filter: blur(6px);
+    border-bottom: 1px solid var(--rule);
+  }
+
+  .nav-inner {
+    width: 100%;
+    max-width: 900px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .nav-mark {
+    font-size: 14px;
+    font-weight: 500;
+    letter-spacing: 0.02em;
+    color: var(--text);
+    text-decoration: none;
+  }
+
+  .nav-right {
+    display: flex;
+    align-items: center;
+    gap: 28px;
+  }
+
+  .nav-links {
+    display: flex;
+    gap: 36px;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+
+  .nav-links a {
+    text-decoration: none;
+    font-size: 13px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--text-dim);
+    transition: color 0.2s ease;
+  }
+
+  .nav-links a::before {
+    content: "";
+  }
+
+  .nav-links a:hover {
+    color: var(--text);
+  }
+
+  .theme-toggle {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 34px;
+    height: 34px;
+    padding: 0;
+    background: transparent;
+    color: var(--text-dim);
+    border: none;
+    cursor: pointer;
+    transition: color 0.2s ease;
+  }
+
+  .theme-toggle:hover,
+  .theme-toggle:focus-visible {
+    color: var(--text);
+  }
+
+  .theme-toggle svg {
+    width: 16px;
+    height: 16px;
+  }
+
+  .theme-toggle .theme-icon-moon { display: none; }
+
+  :root[data-theme="light"] .theme-toggle .theme-icon-sun { display: none; }
+  :root[data-theme="light"] .theme-toggle .theme-icon-moon { display: block; }
+
+  /* ---------- Layout ---------- */
+
+  section {
+    max-width: var(--max-width);
+    margin: 0 auto;
+    padding: 110px 32px;
+  }
+
+  .hero {
+    min-height: 92vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding-top: 120px;
+    padding-bottom: 80px;
+  }
+
+  .hero-eyebrow {
+    color: var(--text-dimmer);
+    font-size: 13px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    margin-bottom: 26px;
+  }
+
+  .hero-eyebrow::before {
+    content: "// ";
+  }
+
+  .hero h1 {
+    font-size: clamp(2rem, 6vw, 3.4rem);
+    line-height: 1.15;
+    color: var(--text);
+    font-weight: 600;
+  }
+
+  .hero-role {
+    margin-top: 28px;
+    font-size: 17px;
+    color: var(--text-dim);
+    max-width: 540px;
+    padding-left: 18px;
+    border-left: 2px solid var(--text);
+  }
+
+  .hero-tagline {
+    margin-top: 18px;
+    font-size: 15px;
+    color: var(--text-dimmer);
+    max-width: 520px;
+    line-height: 1.8;
+  }
+
+  .hero-resume-btn {
+    margin-top: 24px;
+    transform: scale(0.5);
+    transform-origin: left center;
+  }
+
+  .hero-portfolio-btn {
+    margin-top: -8px;
+    transform: scale(0.5);
+    transform-origin: left center;
+  }
+
+  hr.rule {
+    border: none;
+    border-top: 1px solid var(--rule);
+    max-width: var(--max-width);
+    margin: 0 auto;
+  }
+
+  .section-label {
+    color: var(--text-dimmer);
+    font-size: 13px;
+    letter-spacing: 0.1em;
+    margin-bottom: 10px;
+    display: block;
+    text-transform: uppercase;
+  }
+
+  .section-title {
+    font-size: clamp(1.5rem, 3.5vw, 1.9rem);
+    margin-bottom: 60px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.02em;
+  }
+
+  /* ---------- Experience ---------- */
+
+  .entry {
+    margin-bottom: 0;
+    padding: 32px 0;
+    border-top: 1px solid var(--rule);
+  }
+
+  .entry:first-of-type {
+    border-top: none;
+    padding-top: 0;
+  }
+
+  .entry:last-child {
+    padding-bottom: 0;
+  }
+
+  .entry-head {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    flex-wrap: wrap;
+    gap: 6px 20px;
+    margin-bottom: 6px;
+  }
+
+  .entry-org {
+    font-size: 18px;
+    font-weight: 600;
+    color: var(--text);
+  }
+
+  .entry-date {
+    font-size: 13px;
+    color: var(--text-dimmer);
+    letter-spacing: 0.03em;
+    white-space: nowrap;
+  }
+
+  .entry-role {
+    color: var(--text-dim);
+    font-size: 13px;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    margin-bottom: 18px;
+  }
+
+  .entry ul {
+    margin: 0;
+    padding-left: 0;
+    list-style: none;
+    color: var(--text-dim);
+  }
+
+  .entry li {
+    margin-bottom: 10px;
+    padding-left: 20px;
+    position: relative;
+    font-size: 15px;
+  }
+
+  .entry li::before {
+    content: "―";
+    position: absolute;
+    left: 0;
+    color: var(--text-dimmer);
+  }
+
+  /* ---------- Projects ---------- */
+
+  .project {
+    padding: 28px 0;
+    border-top: 1px solid var(--rule);
+  }
+
+  .project:first-of-type {
+    border-top: none;
+    padding-top: 0;
+  }
+
+  .project:last-child {
+    padding-bottom: 0;
+  }
+
+  .project-title {
+    font-size: 17px;
+    font-weight: 600;
+    margin-bottom: 8px;
+  }
+
+  .project-stack {
+    font-size: 12px;
+    color: var(--text-dimmer);
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    margin-bottom: 16px;
+  }
+
+  .project ul {
+    margin: 0;
+    padding-left: 0;
+    list-style: none;
+    color: var(--text-dim);
+  }
+
+  .project li {
+    margin-bottom: 10px;
+    padding-left: 20px;
+    position: relative;
+    font-size: 15px;
+  }
+
+  .project li::before {
+    content: "―";
+    position: absolute;
+    left: 0;
+    color: var(--text-dimmer);
+  }
+
+  /* ---------- Media button ---------- */
+
+  .project-btn-row {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 12px;
+    margin-top: 20px;
+  }
+
+  .demo-callout {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    margin-left: 10px;
+    background: transparent;
+    border: none;
+    padding: 0;
+    color: var(--text-dim);
+    font-family: inherit;
+    cursor: pointer;
+    transition: color 0.2s ease;
+  }
+
+  .demo-callout:hover,
+  .demo-callout:focus-visible {
+    color: var(--text);
+  }
+
+  .demo-callout-icon {
+    width: 20px;
+    height: 20px;
+    flex-shrink: 0;
+  }
+
+  .demo-callout-text {
+    font-family: 'Caveat', cursive;
+    font-weight: 700;
+    font-size: 25px;
+    line-height: 1;
+    transform: rotate(-4deg);
+    white-space: nowrap;
+  }
+
+  .demo-callout-arrow {
+    flex-shrink: 0;
+  }
+
+  .media-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    margin-top: 20px;
+    padding: 10px 18px;
+    background: transparent;
+    color: var(--text);
+    border: 1px solid var(--rule);
+    font-family: inherit;
+    font-size: 12px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: border-color 0.2s ease, background 0.2s ease, color 0.2s ease;
+  }
+
+  .project-btn-row .media-btn {
+    margin-top: 0;
+  }
+
+  .media-btn:hover,
+  .media-btn:focus-visible {
+    border-color: var(--text);
+    background: var(--text);
+    color: var(--bg);
+  }
+
+  .media-btn-icon {
+    font-size: 10px;
+  }
+
+  /* ---------- Media modal ---------- */
+
+  .media-modal[hidden] {
+    display: none;
+  }
+
+  .media-modal {
+    position: fixed;
+    inset: 0;
+    z-index: 1000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 40px 24px;
+  }
+
+  .media-modal-backdrop {
+    position: absolute;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.94);
+  }
+
+  .media-modal-dialog {
+    position: relative;
+    z-index: 1;
+    width: 100%;
+    max-width: 920px;
+    max-height: 88vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .media-modal-stage {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid var(--rule);
+    background: #050505;
+    min-height: 240px;
+    max-height: 70vh;
+    overflow: hidden;
+  }
+
+  .media-modal-stage img,
+  .media-modal-stage video {
+    max-width: 100%;
+    max-height: 70vh;
+    display: block;
+  }
+
+  .media-modal-stage .media-empty {
+    color: var(--text-dimmer);
+    font-size: 13px;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    padding: 60px 20px;
+  }
+
+  .media-modal-counter {
+    margin-top: 16px;
+    color: var(--text-dimmer);
+    font-size: 12px;
+    letter-spacing: 0.1em;
+    text-align: center;
+  }
+
+  .media-modal-dialog.pdf-mode {
+    max-width: 1000px;
+  }
+
+  .media-modal-dialog.pdf-mode .media-modal-stage {
+    max-height: 72vh;
+    height: 72vh;
+  }
+
+  .media-modal-stage iframe {
+    width: 100%;
+    height: 100%;
+    border: 0;
+    display: block;
+  }
+
+  .media-modal-close {
+    position: fixed;
+    top: 28px;
+    right: 32px;
+    z-index: 2;
+    background: transparent;
+    border: 1px solid var(--rule);
+    color: var(--text);
+    width: 40px;
+    height: 40px;
+    font-size: 18px;
+    line-height: 1;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: border-color 0.2s ease, background 0.2s ease, color 0.2s ease;
+  }
+
+  .media-modal-close:hover,
+  .media-modal-close:focus-visible {
+    border-color: var(--text);
+    background: var(--text);
+    color: var(--bg);
+  }
+
+  .media-modal-nav {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgba(0, 0, 0, 0.6);
+    border: 1px solid var(--rule);
+    color: var(--text);
+    width: 44px;
+    height: 44px;
+    font-size: 16px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: border-color 0.2s ease, background 0.2s ease;
+  }
+
+  .media-modal-nav:hover,
+  .media-modal-nav:focus-visible {
+    border-color: var(--text);
+    background: rgba(255, 255, 255, 0.08);
+  }
+
+  .media-modal-prev { left: -20px; }
+  .media-modal-next { right: -20px; }
+
+  .media-modal-nav[disabled] {
+    opacity: 0.25;
+    cursor: default;
+  }
+
+  .media-modal-nav[hidden] {
+    display: none;
+  }
+
+  @media (max-width: 640px) {
+    .media-modal-close { top: 16px; right: 16px; }
+    .media-modal-prev { left: 0; }
+    .media-modal-next { right: 0; }
+  }
+
+  /* ---------- Skills ---------- */
+
+  .skills-grid {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .skill-row {
+    display: grid;
+    grid-template-columns: 180px 1fr;
+    gap: 20px;
+    padding: 18px 0;
+    border-top: 1px solid var(--rule);
+  }
+
+  .skill-row:first-child {
+    border-top: none;
+    padding-top: 0;
+  }
+
+  .skill-cat {
+    color: var(--text);
+    font-size: 13px;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    font-weight: 500;
+  }
+
+  .skill-list {
+    color: var(--text-dim);
+    font-size: 15px;
+  }
+
+  /* ---------- Contact ---------- */
+
+  .contact {
+    text-align: center;
+  }
+
+  .contact h2 {
+    font-size: clamp(1.5rem, 3.5vw, 2rem);
+    margin-bottom: 22px;
+    font-weight: 600;
+    text-transform: uppercase;
+  }
+
+  .contact p {
+    color: var(--text-dim);
+    max-width: 460px;
+    margin: 0 auto 44px;
+    font-size: 15px;
+  }
+
+  .contact-links {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    flex-wrap: wrap;
+  }
+
+  .contact-links a {
+    text-decoration: none;
+    color: var(--text);
+    font-size: 14px;
+    letter-spacing: 0.03em;
+    border: 1px solid var(--rule);
+    padding: 14px 26px;
+    transition: border-color 0.2s ease, background 0.2s ease;
+  }
+
+  .contact-links a:hover {
+    border-color: var(--text);
+    background: var(--text);
+    color: var(--bg);
+  }
+
+  footer {
+    text-align: center;
+    padding: 50px 32px 60px;
+    color: var(--text-dimmer);
+    font-size: 12px;
+    letter-spacing: 0.05em;
+  }
+
+  /* ---------- Fade-in on scroll ---------- */
+
+  .fade-in {
+    opacity: 0;
+    transform: translateY(14px);
+    transition: opacity 0.7s ease, transform 0.7s ease;
+  }
+
+  .fade-in.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .fade-in {
+      opacity: 1;
+      transform: none;
+      transition: none;
+    }
+    html {
+      scroll-behavior: auto;
+    }
+  }
+
+  /* ---------- Responsive ---------- */
+
+  @media (max-width: 640px) {
+    body { font-size: 15px; }
+    nav { padding: 18px 20px; }
+    .nav-right { gap: 16px; }
+    .nav-links { gap: 18px; }
+    .nav-links a { font-size: 11px; }
+    .nav-mark { font-size: 13px; }
+    .theme-toggle { width: 30px; height: 30px; }
+    section { padding: 80px 22px; }
+    .hero { min-height: auto; padding-top: 130px; }
+    .skill-row { grid-template-columns: 1fr; gap: 8px; }
+    .entry-org { font-size: 17px; }
+    .contact-links { flex-direction: column; align-items: stretch; gap: 12px; }
+    .contact-links a { text-align: center; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-inner">
+    <a href="#top" class="nav-mark">YV</a>
+    <div class="nav-right">
+      <ul class="nav-links">
+        <li><a href="#experience">Experience</a></li>
+        <li><a href="#projects">Projects</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+      <button class="theme-toggle" id="themeToggle" type="button" aria-label="Switch to light mode">
+        <svg class="theme-icon theme-icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <circle cx="12" cy="12" r="4"></circle>
+          <line x1="12" y1="2" x2="12" y2="4.5"></line>
+          <line x1="12" y1="19.5" x2="12" y2="22"></line>
+          <line x1="4.22" y1="4.22" x2="5.94" y2="5.94"></line>
+          <line x1="18.06" y1="18.06" x2="19.78" y2="19.78"></line>
+          <line x1="2" y1="12" x2="4.5" y2="12"></line>
+          <line x1="19.5" y1="12" x2="22" y2="12"></line>
+          <line x1="4.22" y1="19.78" x2="5.94" y2="18.06"></line>
+          <line x1="18.06" y1="5.94" x2="19.78" y2="4.22"></line>
+        </svg>
+        <svg class="theme-icon theme-icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+        </svg>
+      </button>
+    </div>
+  </div>
+</nav>
+
+<section class="hero" id="top">
+  <div class="hero-eyebrow fade-in">Portfolio</div>
+  <h1 class="fade-in">Yatukulan Vivekanandan</h1>
+  <p class="hero-role fade-in">Computer Engineering Co-op &mdash; McMaster University</p>
+  <p class="hero-tagline fade-in">Designing hardware and firmware at the intersection of power electronics, real-time embedded systems, and the physical world.</p>
+  <button class="media-btn report-btn hero-resume-btn fade-in" type="button" data-report="media/resume.pdf" data-report-title="Yatukulan Vivekanandan &mdash; Resume">
+    Resume <span class="media-btn-icon">&#8594;</span>
+  </button>
+  <button class="media-btn report-btn hero-portfolio-btn fade-in" type="button" data-report="media/portfolio.pdf" data-report-title="Yatukulan Vivekanandan &mdash; Portfolio">
+    Portfolio <span class="media-btn-icon">&#8594;</span>
+  </button>
+</section>
+
+<hr class="rule">
+
+<section id="experience">
+  <span class="section-label fade-in">01</span>
+  <h2 class="section-title fade-in">Experience</h2>
+
+  <div class="entry fade-in">
+    <div class="entry-head">
+      <span class="entry-org">Enedym Inc.</span>
+      <span class="entry-date">May 2026 &ndash; August 2026</span>
+    </div>
+    <div class="entry-role">Electrical Engineering Intern &middot; Hamilton, Ontario</div>
+    <ul>
+      <li>Independently designing an in-house IoT CAN Bus Data Logger &mdash; a custom Altium PCB with real-time CAN acquisition firmware and IoT cloud connectivity &mdash; replacing a $1,000 commercial unit for under $500 in BOM cost.</li>
+      <li>Building a customer-facing web interface for streamlined data access, visualization, and remote diagnostics.</li>
+    </ul>
+  </div>
+
+  <div class="entry fade-in">
+    <div class="entry-head">
+      <span class="entry-org">McMaster Formula Electric</span>
+      <span class="entry-date">September 2025 &ndash; Present</span>
+    </div>
+    <div class="entry-role">High Voltage Electronics Engineer &middot; Hamilton, Ontario</div>
+    <ul>
+      <li>Redesigned the EV Charger Controller subsystem end-to-end, from requirements derivation through manufacturing and testing, reducing BOM cost by 15%.</li>
+      <li>Built hardware test fixtures and conducted impedance testing and thermal simulations for design verification.</li>
+    </ul>
+  </div>
+
+  <div class="entry fade-in">
+    <div class="entry-head">
+      <span class="entry-org">McMaster Chem E Car Team</span>
+      <span class="entry-date">August 2025 &ndash; April 2026</span>
+    </div>
+    <div class="entry-role">Circuitry Team Member &middot; Hamilton, Ontario</div>
+    <ul>
+      <li>Reverse-engineered an HP3435A multimeter with a failed display system and restored it to full working order, saving the team $150.</li>
+      <li>Built an Arduino-based data acquisition system with serial logging to Excel, validating readings against reference equipment to &plusmn;1.5% accuracy.</li>
+    </ul>
+  </div>
+</section>
+
+<hr class="rule">
+
+<section id="projects">
+  <span class="section-label fade-in">02</span>
+  <h2 class="section-title fade-in">Projects</h2>
+
+  <div class="project fade-in" data-project="mech-keyboard">
+    <div class="project-title">STM32-Based Mechanical Keyboard</div>
+    <div class="project-stack">KiCAD &middot; STM32 &middot; USB &middot; C++ &middot; Embedded Firmware</div>
+    <ul>
+      <li>Designed electrical schematics and a multi-layer PCB for an 82-key keyboard built around an STM32 microcontroller.</li>
+      <li>Developed C++ firmware for real-time matrix scanning, validating timing requirements with a logic analyzer.</li>
+    </ul>
+    <button class="media-btn" type="button" data-project="mech-keyboard" hidden>
+      <span class="media-btn-icon">&#9635;</span> View Project
+    </button>
+  </div>
+
+  <div class="project fade-in" data-project="seer">
+    <div class="project-title">SEER &mdash; Object &amp; Temperature Detection Device</div>
+    <div class="project-stack">Arduino &middot; C/C++ &middot; Embedded Systems</div>
+    <ul>
+      <li>Developed an embedded sensing device for a client with Usher&rsquo;s Syndrome to improve environmental navigation.</li>
+      <li>Debugged firmware and implemented a sensor fusion algorithm achieving 90% detection accuracy.</li>
+    </ul>
+    <div class="project-btn-row">
+      <button class="media-btn" type="button" data-project="seer" hidden>
+        <span class="media-btn-icon">&#9635;</span> View Project
+      </button>
+      <button class="media-btn report-btn" type="button" data-report="media/seer/presentation.pdf" data-report-title="SEE-R &mdash; Final Presentation">
+        <span class="media-btn-icon">&#9635;</span> View Presentation
+      </button>
+      <button class="demo-callout" type="button" data-video="media/seer/demo2.mp4" data-video-title="SEE-R &mdash; Demo Video">
+        <svg class="demo-callout-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <circle cx="12" cy="12" r="9"></circle>
+          <polygon points="10 8 16 12 10 16 10 8"></polygon>
+        </svg>
+        <svg class="demo-callout-arrow" width="64" height="46" viewBox="0 0 64 46" fill="none" aria-hidden="true">
+          <path d="M60 6 C 62 20, 50 30, 34 32 S 12 30, 8 18" stroke="currentColor" stroke-width="2" stroke-linecap="round" fill="none"/>
+          <path d="M19 15 C 14 17, 10 18, 7 19 C 9 22, 11 26, 12 31" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+        </svg>
+        <span class="demo-callout-text">watch demo video</span>
+      </button>
+    </div>
+  </div>
+
+  <div class="project fade-in" data-project="tof-scanner">
+    <div class="project-title">ToF Spatial Scanner</div>
+    <div class="project-stack">MSP432E401Y &middot; C &middot; Stepper Motor Control &middot; I2C/UART &middot; MATLAB</div>
+    <ul>
+      <li>Developed C firmware synchronizing a stepper motor with VL53L1X time-of-flight sensor readings via I2C.</li>
+      <li>Streamed scan data over UART to MATLAB for real-time 3D point-cloud reconstruction.</li>
+      <li>Characterized scan reliability through analysis of motor timing, sensor quantization, and UART throughput.</li>
+    </ul>
+    <div class="project-btn-row">
+      <button class="media-btn" type="button" data-project="tof-scanner" hidden>
+        <span class="media-btn-icon">&#9635;</span> View Project
+      </button>
+      <button class="media-btn report-btn" type="button" data-report="media/tof-scanner/report.pdf" data-report-title="ToF Spatial Scanner &mdash; Final Report">
+        <span class="media-btn-icon">&#9635;</span> View Report
+      </button>
+    </div>
+  </div>
+
+  <div class="project fade-in" data-project="marine-boat">
+    <div class="project-title">Marine Debris RC Boat</div>
+    <div class="project-stack">Arduino &middot; RF Control &middot; Brushless Motors &middot; ESC</div>
+    <ul>
+      <li>Built a wireless aquatic robot with dual brushless motors and ESC-driven propulsion for debris removal.</li>
+      <li>Integrated Arduino Uno with RF control and designed a waterproof housing and power circuit for stability.</li>
+      <li>Achieved smooth wireless control with 40+ minute runtime and reliable debris collection.</li>
+    </ul>
+    <div class="project-btn-row">
+      <button class="media-btn" type="button" data-project="marine-boat" hidden>
+        <span class="media-btn-icon">&#9635;</span> View Project
+      </button>
+      <button class="demo-callout" type="button" data-video="media/marine-boat/demo.mp4" data-video-title="Marine Debris RC Boat &mdash; Demo Video">
+        <svg class="demo-callout-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <circle cx="12" cy="12" r="9"></circle>
+          <polygon points="10 8 16 12 10 16 10 8"></polygon>
+        </svg>
+        <svg class="demo-callout-arrow" width="64" height="46" viewBox="0 0 64 46" fill="none" aria-hidden="true">
+          <path d="M60 6 C 62 20, 50 30, 34 32 S 12 30, 8 18" stroke="currentColor" stroke-width="2" stroke-linecap="round" fill="none"/>
+          <path d="M19 15 C 14 17, 10 18, 7 19 C 9 22, 11 26, 12 31" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+        </svg>
+        <span class="demo-callout-text">watch demo video</span>
+      </button>
+    </div>
+  </div>
+</section>
+
+<hr class="rule">
+
+<section id="skills">
+  <span class="section-label fade-in">03</span>
+  <h2 class="section-title fade-in">Skills</h2>
+
+  <div class="skills-grid">
+    <div class="skill-row fade-in">
+      <div class="skill-cat">EDA &amp; Design Tools</div>
+      <div class="skill-list">Altium Designer, KiCAD, LTSpice, PSpice, AutoCAD Electrical, Schematic Capture, Multi-layer PCB Layout</div>
+    </div>
+    <div class="skill-row fade-in">
+      <div class="skill-cat">Embedded Systems</div>
+      <div class="skill-list">C/C++, Python, MATLAB, Motor Controllers, Embedded Hardware, Board Bring-up, Hardware Debug, Design Verification</div>
+    </div>
+    <div class="skill-row fade-in">
+      <div class="skill-cat">Protocols</div>
+      <div class="skill-list">CAN, SPI, I2C, UART, EtherCAT, USB</div>
+    </div>
+    <div class="skill-row fade-in">
+      <div class="skill-cat">Test &amp; Measurement</div>
+      <div class="skill-list">Oscilloscopes, Logic Analyzers, Multimeters, Function Generators, Impedance Testing, Datasheet Analysis, Hardware Validation, Soldering</div>
+    </div>
+  </div>
+</section>
+
+<hr class="rule">
+
+<section id="contact" class="contact">
+  <span class="section-label fade-in">04</span>
+  <h2 class="fade-in">Get in touch</h2>
+  <p class="fade-in">Open to co-op opportunities in hardware and embedded systems engineering.</p>
+  <div class="contact-links fade-in">
+    <a href="mailto:yatukulan.v@gmail.com">yatukulan.v@gmail.com</a>
+    <a href="https://linkedin.com/in/yatukulan" target="_blank" rel="noopener">linkedin.com/in/yatukulan</a>
+  </div>
+</section>
+
+<footer>
+  &copy; 2026 Yatukulan Vivekanandan
+</footer>
+
+<div class="media-modal" id="mediaModal" hidden>
+  <div class="media-modal-backdrop" data-close></div>
+  <div class="media-modal-dialog" role="dialog" aria-modal="true" aria-label="Project media viewer">
+    <button class="media-modal-close" type="button" data-close aria-label="Close">&times;</button>
+    <button class="media-modal-nav media-modal-prev" type="button" aria-label="Previous item">&#8592;</button>
+    <div class="media-modal-stage" id="mediaStage"></div>
+    <button class="media-modal-nav media-modal-next" type="button" aria-label="Next item">&#8594;</button>
+    <div class="media-modal-counter" id="mediaCounter"></div>
+  </div>
+</div>
+
+<script>
+  (function () {
+    var root = document.documentElement;
+    var toggle = document.getElementById('themeToggle');
+    if (!toggle) return;
+
+    function isLight() {
+      return root.getAttribute('data-theme') === 'light';
+    }
+
+    function updateLabel() {
+      toggle.setAttribute('aria-label', isLight() ? 'Switch to dark mode' : 'Switch to light mode');
+    }
+
+    function applyTheme(light) {
+      if (light) {
+        root.setAttribute('data-theme', 'light');
+      } else {
+        root.removeAttribute('data-theme');
+      }
+      try { localStorage.setItem('theme', light ? 'light' : 'dark'); } catch (e) {}
+      updateLabel();
+    }
+
+    updateLabel();
+
+    toggle.addEventListener('click', function () {
+      var toLight = !isLight();
+      var prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      var supportsViewTransitions = typeof document.startViewTransition === 'function';
+
+      if (!supportsViewTransitions || prefersReducedMotion) {
+        applyTheme(toLight);
+        return;
+      }
+
+      var rect = toggle.getBoundingClientRect();
+      var x = rect.left + rect.width / 2;
+      var y = rect.top + rect.height / 2;
+      var radius = Math.hypot(window.innerWidth, window.innerHeight) * 1.5;
+
+      var transition = document.startViewTransition(function () {
+        applyTheme(toLight);
+      });
+
+      transition.ready.then(function () {
+        root.animate(
+          {
+            clipPath: [
+              'circle(0px at ' + x + 'px ' + y + 'px)',
+              'circle(' + radius + 'px at ' + x + 'px ' + y + 'px)'
+            ]
+          },
+          {
+            duration: 550,
+            easing: 'ease-in-out',
+            pseudoElement: '::view-transition-new(root)'
+          }
+        );
+      });
+    });
+  })();
+</script>
+
+<script>
+  (function () {
+    var els = document.querySelectorAll('.fade-in');
+    if (!('IntersectionObserver' in window)) {
+      els.forEach(function (el) { el.classList.add('visible'); });
+      return;
+    }
+    var observer = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+    els.forEach(function (el) { observer.observe(el); });
+  })();
+</script>
+
+<script>
+  (function () {
+    /*
+      Media convention: drop files into  media/<project-slug>/
+      named 1, 2, 3 ... in order, using any of the extensions below.
+      Example:  media/tof-scanner/1.jpg, media/tof-scanner/2.mp4
+      No code changes needed — the button appears automatically once
+      at least one matching file is found.
+    */
+    var PROJECT_SLUGS = ['mech-keyboard', 'seer', 'tof-scanner', 'marine-boat'];
+    var MAX_SLOTS = 12;
+    var IMAGE_EXTS = ['jpg', 'jpeg', 'png', 'webp', 'gif'];
+    var VIDEO_EXTS = ['mp4', 'webm', 'mov'];
+
+    var library = {};
+    var state = { slug: null, index: 0 };
+
+    var modal = document.getElementById('mediaModal');
+    var dialog = modal.querySelector('.media-modal-dialog');
+    var stage = document.getElementById('mediaStage');
+    var counter = document.getElementById('mediaCounter');
+    var prevBtn = modal.querySelector('.media-modal-prev');
+    var nextBtn = modal.querySelector('.media-modal-next');
+
+    function probeImage(src) {
+      return new Promise(function (resolve) {
+        var img = new Image();
+        img.onload = function () { resolve(true); };
+        img.onerror = function () { resolve(false); };
+        img.src = src;
+      });
+    }
+
+    function probeVideo(src) {
+      return new Promise(function (resolve) {
+        var video = document.createElement('video');
+        video.preload = 'metadata';
+        video.onloadedmetadata = function () { resolve(true); };
+        video.onerror = function () { resolve(false); };
+        video.src = src;
+      });
+    }
+
+    function detectSlot(slug, slot) {
+      var base = 'media/' + slug + '/' + slot + '.';
+      var i = 0;
+      function tryImages() {
+        if (i >= IMAGE_EXTS.length) return tryVideosStart();
+        var src = base + IMAGE_EXTS[i];
+        i++;
+        return probeImage(src).then(function (ok) {
+          return ok ? { type: 'image', src: src } : tryImages();
+        });
+      }
+      var j = 0;
+      function tryVideosStart() {
+        j = 0;
+        return tryVideos();
+      }
+      function tryVideos() {
+        if (j >= VIDEO_EXTS.length) return null;
+        var src = base + VIDEO_EXTS[j];
+        j++;
+        return probeVideo(src).then(function (ok) {
+          return ok ? { type: 'video', src: src } : tryVideos();
+        });
+      }
+      return tryImages();
+    }
+
+    function loadProjectMedia(slug) {
+      var slots = [];
+      for (var s = 1; s <= MAX_SLOTS; s++) slots.push(detectSlot(slug, s));
+      return Promise.all(slots).then(function (results) {
+        var items = results.filter(Boolean);
+        library[slug] = items;
+        if (items.length > 0) {
+          var btn = document.querySelector('.media-btn[data-project="' + slug + '"]');
+          if (btn) btn.hidden = false;
+        }
+      });
+    }
+
+    PROJECT_SLUGS.forEach(loadProjectMedia);
+
+    function renderItem() {
+      var items = library[state.slug] || [];
+      var item = items[state.index];
+      stage.innerHTML = '';
+      if (!item) {
+        var empty = document.createElement('div');
+        empty.className = 'media-empty';
+        empty.textContent = 'No media yet';
+        stage.appendChild(empty);
+        counter.textContent = '';
+        return;
+      }
+      var el;
+      if (item.type === 'video') {
+        el = document.createElement('video');
+        el.src = item.src;
+        el.controls = true;
+        el.autoplay = true;
+        el.playsInline = true;
+      } else {
+        el = document.createElement('img');
+        el.src = item.src;
+        el.alt = state.slug + ' media ' + (state.index + 1);
+      }
+      stage.appendChild(el);
+      counter.textContent = items.length
+        ? String(state.index + 1).padStart(2, '0') + ' / ' + String(items.length).padStart(2, '0')
+        : '';
+      prevBtn.disabled = items.length <= 1;
+      nextBtn.disabled = items.length <= 1;
+    }
+
+    function openModal(slug) {
+      dialog.classList.remove('pdf-mode');
+      prevBtn.hidden = false;
+      nextBtn.hidden = false;
+      state.slug = slug;
+      state.index = 0;
+      renderItem();
+      modal.hidden = false;
+      document.body.style.overflow = 'hidden';
+    }
+
+    function openReport(src, title) {
+      dialog.classList.add('pdf-mode');
+      prevBtn.hidden = true;
+      nextBtn.hidden = true;
+      state.slug = null;
+      stage.innerHTML = '';
+      var iframe = document.createElement('iframe');
+      iframe.src = src;
+      iframe.title = title || 'Report';
+      stage.appendChild(iframe);
+      counter.textContent = title || '';
+      modal.hidden = false;
+      document.body.style.overflow = 'hidden';
+    }
+
+    function openVideo(src, title) {
+      dialog.classList.remove('pdf-mode');
+      prevBtn.hidden = true;
+      nextBtn.hidden = true;
+      state.slug = null;
+      stage.innerHTML = '';
+      var video = document.createElement('video');
+      video.src = src;
+      video.controls = true;
+      video.autoplay = true;
+      video.playsInline = true;
+      stage.appendChild(video);
+      counter.textContent = title || '';
+      modal.hidden = false;
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeModal() {
+      modal.hidden = true;
+      stage.innerHTML = '';
+      dialog.classList.remove('pdf-mode');
+      prevBtn.hidden = false;
+      nextBtn.hidden = false;
+      document.body.style.overflow = '';
+    }
+
+    function step(delta) {
+      var items = library[state.slug] || [];
+      if (!items.length) return;
+      state.index = (state.index + delta + items.length) % items.length;
+      renderItem();
+    }
+
+    document.querySelectorAll('.media-btn[data-project]').forEach(function (btn) {
+      btn.addEventListener('click', function () {
+        openModal(btn.getAttribute('data-project'));
+      });
+    });
+
+    document.querySelectorAll('.report-btn[data-report]').forEach(function (btn) {
+      btn.addEventListener('click', function () {
+        openReport(btn.getAttribute('data-report'), btn.getAttribute('data-report-title'));
+      });
+    });
+
+    document.querySelectorAll('.demo-callout[data-video]').forEach(function (btn) {
+      btn.addEventListener('click', function () {
+        openVideo(btn.getAttribute('data-video'), btn.getAttribute('data-video-title'));
+      });
+    });
+
+    modal.querySelectorAll('[data-close]').forEach(function (el) {
+      el.addEventListener('click', closeModal);
+    });
+
+    prevBtn.addEventListener('click', function () { step(-1); });
+    nextBtn.addEventListener('click', function () { step(1); });
+
+    document.addEventListener('keydown', function (e) {
+      if (modal.hidden) return;
+      if (e.key === 'Escape') closeModal();
+      if (e.key === 'ArrowLeft') step(-1);
+      if (e.key === 'ArrowRight') step(1);
+    });
+  })();
+</script>
+
+</body>
+</html>
