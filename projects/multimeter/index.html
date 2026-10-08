@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<script>
+  (function () {
+    try {
+      var stored = localStorage.getItem('theme');
+      var theme = stored || (window.matchMedia && window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark');
+      if (theme === 'light') document.documentElement.setAttribute('data-theme', 'light');
+    } catch (e) {}
+  })();
+</script>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>HP 3435A Multimeter Restoration &mdash; Yatukulan Vivekanandan</title>
+<meta name="description" content="Reverse-engineered a vintage HP 3435A multimeter with a failed display system and restored it to full working order.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=Caveat:wght@600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+
+<nav>
+  <div class="nav-inner">
+    <a href="/" class="nav-mark">YV</a>
+    <div class="nav-right">
+      <ul class="nav-links">
+        <li><a href="/experience/">Experience</a></li>
+        <li><a href="/projects/">Projects</a></li>
+        <li><a href="/#contact">Contact</a></li>
+      </ul>
+      <button class="theme-toggle" id="themeToggle" type="button" aria-label="Switch to light mode">
+        <svg class="theme-icon theme-icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <circle cx="12" cy="12" r="4"></circle>
+          <line x1="12" y1="2" x2="12" y2="4.5"></line>
+          <line x1="12" y1="19.5" x2="12" y2="22"></line>
+          <line x1="4.22" y1="4.22" x2="5.94" y2="5.94"></line>
+          <line x1="18.06" y1="18.06" x2="19.78" y2="19.78"></line>
+          <line x1="2" y1="12" x2="4.5" y2="12"></line>
+          <line x1="19.5" y1="12" x2="22" y2="12"></line>
+          <line x1="4.22" y1="19.78" x2="5.94" y2="18.06"></line>
+          <line x1="18.06" y1="5.94" x2="19.78" y2="4.22"></line>
+        </svg>
+        <svg class="theme-icon theme-icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+        </svg>
+      </button>
+    </div>
+  </div>
+</nav>
+
+<section class="page">
+  <a class="back-link fade-in" href="/projects/">&#8592; Projects</a>
+  <div class="fade-in"><ul class="card-tags"><li>Reverse Engineering</li><li>Hardware Debug</li><li>Test Equipment</li></ul></div>
+  <h1 class="page-title fade-in">HP 3435A Multimeter Restoration</h1>
+  <p class="page-lede fade-in">Reverse-engineered a vintage HP 3435A multimeter with a failed display system and restored it to full working order, saving the team $150.</p>
+
+  <figure class="page-hero fade-in">
+    <div class="cover-text" role="img" aria-label="HP 3435A multimeter">
+      <span class="cover-text-main">HP 3435A</span>
+      <span class="cover-text-sub">Digital Multimeter &middot; Restored</span>
+    </div>
+  </figure>
+
+  <div class="prose fade-in">
+    <h2>Context</h2>
+    <p>McMaster Chem E Car Team &middot; Circuitry Team</p>
+    <h2>What I did</h2>
+    <ul>
+      <li>Reverse-engineered an HP 3435A multimeter with a failed display system.</li>
+      <li>Restored the meter to full working order, saving the team $150.</li>
+    </ul>
+  </div>
+
+  <div class="pager" role="navigation" aria-label="More projects">
+    <a href="/projects/marine-boat/"><span>&#8592; Previous</span>Marine Debris RC Boat</a>
+  </div>
+</section>
+
+<footer>
+  &copy; 2026 Yatukulan Vivekanandan
+</footer>
+
+<script src="/site.js"></script>
+
+</body>
+</html>
