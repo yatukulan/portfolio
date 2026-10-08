@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<script>
+  (function () {
+    try {
+      var stored = localStorage.getItem('theme');
+      var theme = stored || (window.matchMedia && window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark');
+      if (theme === 'light') document.documentElement.setAttribute('data-theme', 'light');
+    } catch (e) {}
+  })();
+</script>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>STM32 Mechanical Keyboard &mdash; Yatukulan Vivekanandan</title>
+<meta name="description" content="An 82-key keyboard on a custom multi-layer STM32 PCB, with C++ firmware for real-time matrix scanning verified on a logic analyzer.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=Caveat:wght@600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+
+<nav>
+  <div class="nav-inner">
+    <a href="/" class="nav-mark">YV</a>
+    <div class="nav-right">
+      <ul class="nav-links">
+        <li><a href="/experience/">Experience</a></li>
+        <li><a href="/projects/">Projects</a></li>
+        <li><a href="/#contact">Contact</a></li>
+      </ul>
+      <button class="theme-toggle" id="themeToggle" type="button" aria-label="Switch to light mode">
+        <svg class="theme-icon theme-icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <circle cx="12" cy="12" r="4"></circle>
+          <line x1="12" y1="2" x2="12" y2="4.5"></line>
+          <line x1="12" y1="19.5" x2="12" y2="22"></line>
+          <line x1="4.22" y1="4.22" x2="5.94" y2="5.94"></line>
+          <line x1="18.06" y1="18.06" x2="19.78" y2="19.78"></line>
+          <line x1="2" y1="12" x2="4.5" y2="12"></line>
+          <line x1="19.5" y1="12" x2="22" y2="12"></line>
+          <line x1="4.22" y1="19.78" x2="5.94" y2="18.06"></line>
+          <line x1="18.06" y1="5.94" x2="19.78" y2="4.22"></line>
+        </svg>
+        <svg class="theme-icon theme-icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+        </svg>
+      </button>
+    </div>
+  </div>
+</nav>
+
+<section class="page">
+  <a class="back-link fade-in" href="/projects/">&#8592; Projects</a>
+  <div class="fade-in"><ul class="card-tags"><li>KiCAD</li><li>STM32</li><li>C++</li><li>USB</li></ul></div>
+  <h1 class="page-title fade-in">STM32 Mechanical Keyboard</h1>
+  <p class="page-lede fade-in">An 82-key keyboard on a custom multi-layer STM32 PCB, with C++ firmware for real-time matrix scanning verified on a logic analyzer.</p>
+
+  <figure class="page-hero fade-in">
+    <img src="/media/mech-keyboard/cover.jpg" alt="STM32 mechanical keyboard" width="960" height="600">
+  </figure>
+
+  <div class="prose fade-in">
+    <h2>Stack</h2>
+    <p>KiCAD &middot; STM32 &middot; USB &middot; C++ &middot; Embedded Firmware</p>
+    <h2>What I did</h2>
+    <ul>
+      <li>Designed electrical schematics and a multi-layer PCB for an 82-key keyboard built around an STM32 microcontroller.</li>
+      <li>Developed C++ firmware for real-time matrix scanning, validating timing requirements with a logic analyzer.</li>
+    </ul>
+  </div>
+
+  <h2 class="gallery-heading fade-in">Gallery</h2>
+  <div class="gallery fade-in" data-gallery>
+    <button class="gallery-item" type="button" data-full="/media/mech-keyboard/1.png">
+      <img src="/media/mech-keyboard/thumbs/1.jpg" alt="STM32 mechanical keyboard &mdash; image 1" loading="lazy">
+    </button>
+    <button class="gallery-item" type="button" data-full="/media/mech-keyboard/2.png">
+      <img src="/media/mech-keyboard/thumbs/2.jpg" alt="STM32 mechanical keyboard &mdash; image 2" loading="lazy">
+    </button>
+    <button class="gallery-item" type="button" data-full="/media/mech-keyboard/3.png">
+      <img src="/media/mech-keyboard/thumbs/3.jpg" alt="STM32 mechanical keyboard &mdash; image 3" loading="lazy">
+    </button>
+    <button class="gallery-item" type="button" data-full="/media/mech-keyboard/4.png">
+      <img src="/media/mech-keyboard/thumbs/4.jpg" alt="STM32 mechanical keyboard &mdash; image 4" loading="lazy">
+    </button>
+    <button class="gallery-item" type="button" data-full="/media/mech-keyboard/5.png">
+      <img src="/media/mech-keyboard/thumbs/5.jpg" alt="STM32 mechanical keyboard &mdash; image 5" loading="lazy">
+    </button>
+    <button class="gallery-item" type="button" data-full="/media/mech-keyboard/6.png">
+      <img src="/media/mech-keyboard/thumbs/6.jpg" alt="STM32 mechanical keyboard &mdash; image 6" loading="lazy">
+    </button>
+    <button class="gallery-item" type="button" data-full="/media/mech-keyboard/7.png">
+      <img src="/media/mech-keyboard/thumbs/7.jpg" alt="STM32 mechanical keyboard &mdash; image 7" loading="lazy">
+    </button>
+  </div>
+
+  <div class="pager" role="navigation" aria-label="More projects">
+    <a class="pager-next" href="/projects/seer/"><span>Next &#8594;</span>SEER &mdash; Object &amp; Temperature Detection</a>
+  </div>
+</section>
+
+<footer>
+  &copy; 2026 Yatukulan Vivekanandan
+</footer>
+
+<script src="/site.js"></script>
+
+</body>
+</html>

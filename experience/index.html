@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<script>
+  (function () {
+    try {
+      var stored = localStorage.getItem('theme');
+      var theme = stored || (window.matchMedia && window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark');
+      if (theme === 'light') document.documentElement.setAttribute('data-theme', 'light');
+    } catch (e) {}
+  })();
+</script>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Experience &mdash; Yatukulan Vivekanandan</title>
+<meta name="description" content="Full experience history of Yatukulan Vivekanandan.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=Caveat:wght@600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+
+<nav>
+  <div class="nav-inner">
+    <a href="/" class="nav-mark">YV</a>
+    <div class="nav-right">
+      <ul class="nav-links">
+        <li><a href="/experience/">Experience</a></li>
+        <li><a href="/projects/">Projects</a></li>
+        <li><a href="/#contact">Contact</a></li>
+      </ul>
+      <button class="theme-toggle" id="themeToggle" type="button" aria-label="Switch to light mode">
+        <svg class="theme-icon theme-icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <circle cx="12" cy="12" r="4"></circle>
+          <line x1="12" y1="2" x2="12" y2="4.5"></line>
+          <line x1="12" y1="19.5" x2="12" y2="22"></line>
+          <line x1="4.22" y1="4.22" x2="5.94" y2="5.94"></line>
+          <line x1="18.06" y1="18.06" x2="19.78" y2="19.78"></line>
+          <line x1="2" y1="12" x2="4.5" y2="12"></line>
+          <line x1="19.5" y1="12" x2="22" y2="12"></line>
+          <line x1="4.22" y1="19.78" x2="5.94" y2="18.06"></line>
+          <line x1="18.06" y1="5.94" x2="19.78" y2="4.22"></line>
+        </svg>
+        <svg class="theme-icon theme-icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+        </svg>
+      </button>
+    </div>
+  </div>
+</nav>
+
+<section class="page">
+  <a class="back-link fade-in" href="/">&#8592; Home</a>
+  <h1 class="page-title fade-in">Experience</h1>
+  <p class="page-lede fade-in">Hardware, power electronics and embedded systems roles across industry and student design teams.</p>
+
+  <article class="entry fade-in" id="enedym">
+    <div class="entry-head">
+      <span class="entry-org">Enedym Inc.</span>
+      <span class="entry-date">May 2026 &ndash; August 2026</span>
+    </div>
+    <div class="entry-role">Electrical Engineering Intern &middot; Hamilton, Ontario</div>
+    <ul>
+      <li>Independently designing an in-house IoT CAN Bus Data Logger &mdash; a custom Altium PCB with real-time CAN acquisition firmware and IoT cloud connectivity &mdash; replacing a $1,000 commercial unit for under $500 in BOM cost.</li>
+      <li>Building a customer-facing web interface for streamlined data access, visualization, and remote diagnostics.</li>
+    </ul>
+  </article>
+  <article class="entry fade-in" id="formula-electric">
+    <div class="entry-head">
+      <span class="entry-org">McMaster Formula Electric</span>
+      <span class="entry-date">September 2025 &ndash; Present</span>
+    </div>
+    <div class="entry-role">High Voltage Electronics Engineer &middot; Hamilton, Ontario</div>
+    <ul>
+      <li>Redesigned the EV Charger Controller subsystem end-to-end, from requirements derivation through manufacturing and testing, reducing BOM cost by 15%.</li>
+      <li>Built hardware test fixtures and conducted impedance testing and thermal simulations for design verification.</li>
+    </ul>
+  </article>
+  <article class="entry fade-in" id="chem-e-car">
+    <div class="entry-head">
+      <span class="entry-org">McMaster Chem E Car Team</span>
+      <span class="entry-date">August 2025 &ndash; April 2026</span>
+    </div>
+    <div class="entry-role">Circuitry Team Member &middot; Hamilton, Ontario</div>
+    <ul>
+      <li>Reverse-engineered an HP3435A multimeter with a failed display system and restored it to full working order, saving the team $150.</li>
+      <li>Built an Arduino-based data acquisition system with serial logging to Excel, validating readings against reference equipment to &plusmn;1.5% accuracy.</li>
+    </ul>
+  </article>
+</section>
+
+<footer>
+  &copy; 2026 Yatukulan Vivekanandan
+</footer>
+
+<script src="/site.js"></script>
+
+</body>
+</html>
