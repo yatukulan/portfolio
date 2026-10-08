@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<script>
+  (function () {
+    try {
+      var stored = localStorage.getItem('theme');
+      var theme = stored || (window.matchMedia && window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark');
+      if (theme === 'light') document.documentElement.setAttribute('data-theme', 'light');
+    } catch (e) {}
+  })();
+</script>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>IoT CAN Bus Data Logger &mdash; Yatukulan Vivekanandan</title>
+<meta name="description" content="A custom IoT CAN bus data logger PCB with real-time CAN acquisition firmware and cloud connectivity, built in-house at Enedym.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=Caveat:wght@600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+
+<nav>
+  <div class="nav-inner">
+    <a href="/" class="nav-mark">YV</a>
+    <div class="nav-right">
+      <ul class="nav-links">
+        <li><a href="/experience/">Experience</a></li>
+        <li><a href="/projects/">Projects</a></li>
+        <li><a href="/#contact">Contact</a></li>
+      </ul>
+      <button class="theme-toggle" id="themeToggle" type="button" aria-label="Switch to light mode">
+        <svg class="theme-icon theme-icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <circle cx="12" cy="12" r="4"></circle>
+          <line x1="12" y1="2" x2="12" y2="4.5"></line>
+          <line x1="12" y1="19.5" x2="12" y2="22"></line>
+          <line x1="4.22" y1="4.22" x2="5.94" y2="5.94"></line>
+          <line x1="18.06" y1="18.06" x2="19.78" y2="19.78"></line>
+          <line x1="2" y1="12" x2="4.5" y2="12"></line>
+          <line x1="19.5" y1="12" x2="22" y2="12"></line>
+          <line x1="4.22" y1="19.78" x2="5.94" y2="18.06"></line>
+          <line x1="18.06" y1="5.94" x2="19.78" y2="4.22"></line>
+        </svg>
+        <svg class="theme-icon theme-icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+        </svg>
+      </button>
+    </div>
+  </div>
+</nav>
+
+<section class="page">
+  <a class="back-link fade-in" href="/projects/">&#8592; Projects</a>
+  <div class="fade-in"><ul class="card-tags"><li>Altium</li><li>CAN Bus</li><li>IoT</li><li>Embedded Firmware</li></ul></div>
+  <h1 class="page-title fade-in">IoT CAN Bus Data Logger</h1>
+  <p class="page-lede fade-in">A custom Altium PCB with real-time CAN acquisition firmware and IoT cloud connectivity, built in-house at Enedym to replace a $1,000 commercial logger for under $500 in BOM cost.</p>
+
+  <div class="project-btn-row fade-in">
+    <a class="media-btn" href="https://actiumev.com/telemetry/" target="_blank" rel="noopener">
+      Product page <span class="media-btn-icon">&#8599;</span>
+    </a>
+  </div>
+  <figure class="page-hero fade-in">
+    <img src="/media/can-logger/cover.jpg" alt="IoT CAN bus data logger PCB" width="960" height="600">
+  </figure>
+
+  <div class="prose fade-in">
+    <h2>Context</h2>
+    <p>Enedym Inc. &middot; Electrical Engineering Intern</p>
+    <h2>What I did</h2>
+    <ul>
+      <li>Independently designed an in-house IoT CAN Bus Data Logger &mdash; a custom Altium PCB with real-time CAN acquisition firmware and IoT cloud connectivity &mdash; replacing a $1,000 commercial unit for under $500 in BOM cost.</li>
+      <li>Built a customer-facing web interface for streamlined data access, visualization, and remote diagnostics.</li>
+    </ul>
+  </div>
+
+  <h2 class="gallery-heading fade-in">Gallery</h2>
+  <div class="gallery fade-in" data-gallery>
+    <button class="gallery-item" type="button" data-full="/media/can-logger/1.jpg">
+      <img src="/media/can-logger/thumbs/1.jpg" alt="IoT CAN Bus Data Logger &mdash; bench test with CAN interface, multimeter and bench supply" loading="lazy">
+    </button>
+    <button class="gallery-item" type="button" data-full="/media/can-logger/2.jpg">
+      <img src="/media/can-logger/thumbs/2.jpg" alt="IoT CAN Bus Data Logger &mdash; soldering the CAN breakout cable" loading="lazy">
+    </button>
+    <button class="gallery-item" type="button" data-full="/media/can-logger/3.jpg">
+      <img src="/media/can-logger/thumbs/3.jpg" alt="IoT CAN Bus Data Logger &mdash; first power-up on the bench" loading="lazy">
+    </button>
+    <button class="gallery-item" type="button" data-full="/media/can-logger/4.jpg">
+      <img src="/media/can-logger/thumbs/4.jpg" alt="IoT CAN Bus Data Logger &mdash; populated board powered on the bench" loading="lazy">
+    </button>
+    <button class="gallery-item" type="button" data-full="/media/can-logger/5.jpg">
+      <img src="/media/can-logger/thumbs/5.jpg" alt="IoT CAN Bus Data Logger &mdash; bring-up bench with the board and Altium layout" loading="lazy">
+    </button>
+    <button class="gallery-item" type="button" data-full="/media/can-logger/6.jpg">
+      <img src="/media/can-logger/thumbs/6.jpg" alt="IoT CAN Bus Data Logger &mdash; building the connector wiring harness" loading="lazy">
+    </button>
+    <button class="gallery-item" type="button" data-full="/media/can-logger/7.jpg">
+      <img src="/media/can-logger/thumbs/7.jpg" alt="IoT CAN Bus Data Logger &mdash; harness build bench" loading="lazy">
+    </button>
+    <button class="gallery-item" type="button" data-full="/media/can-logger/8.jpg">
+      <img src="/media/can-logger/thumbs/8.jpg" alt="IoT CAN Bus Data Logger &mdash; board with antenna connected" loading="lazy">
+    </button>
+    <button class="gallery-item" type="button" data-full="/media/can-logger/9.jpg">
+      <img src="/media/can-logger/thumbs/9.jpg" alt="IoT CAN Bus Data Logger &mdash; board with antenna connected, close-up" loading="lazy">
+    </button>
+    <button class="gallery-item" type="button" data-full="/media/can-logger/10.jpg">
+      <img src="/media/can-logger/thumbs/10.jpg" alt="IoT CAN Bus Data Logger &mdash; side view with the automotive connector" loading="lazy">
+    </button>
+    <button class="gallery-item" type="button" data-full="/media/can-logger/11.jpg">
+      <img src="/media/can-logger/thumbs/11.jpg" alt="IoT CAN Bus Data Logger &mdash; side view, detail" loading="lazy">
+    </button>
+    <button class="gallery-item" type="button" data-full="/media/can-logger/12.jpg">
+      <img src="/media/can-logger/thumbs/12.jpg" alt="IoT CAN Bus Data Logger &mdash; side view on the desk" loading="lazy">
+    </button>
+    <button class="gallery-item" type="button" data-full="/media/can-logger/13.jpg">
+      <img src="/media/can-logger/thumbs/13.jpg" alt="IoT CAN Bus Data Logger &mdash; finished board" loading="lazy">
+    </button>
+    <button class="gallery-item" type="button" data-full="/media/can-logger/14.jpg">
+      <img src="/media/can-logger/thumbs/14.jpg" alt="IoT CAN Bus Data Logger &mdash; finished board next to the 3D Altium render" loading="lazy">
+    </button>
+    <button class="gallery-item" type="button" data-full="/media/can-logger/15.jpg">
+      <img src="/media/can-logger/thumbs/15.jpg" alt="IoT CAN Bus Data Logger &mdash; finished board, close-up" loading="lazy">
+    </button>
+    <button class="gallery-item" type="button" data-full="/media/can-logger/16.jpg">
+      <img src="/media/can-logger/thumbs/16.jpg" alt="IoT CAN Bus Data Logger &mdash; board with cellular, GNSS and Wi-Fi antennas" loading="lazy">
+    </button>
+    <button class="gallery-item" type="button" data-full="/media/can-logger/17.jpg">
+      <img src="/media/can-logger/thumbs/17.jpg" alt="IoT CAN Bus Data Logger &mdash; finished board in hand" loading="lazy">
+    </button>
+  </div>
+
+  <div class="pager" role="navigation" aria-label="More projects">
+    <a class="pager-next" href="/projects/mech-keyboard/"><span>Next &#8594;</span>STM32 Mechanical Keyboard</a>
+  </div>
+</section>
+
+<footer>
+  &copy; 2026 Yatukulan Vivekanandan
+</footer>
+
+<script src="/site.js"></script>
+
+</body>
+</html>

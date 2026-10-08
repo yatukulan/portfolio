@@ -511,6 +511,10 @@ hr.rule {
   transition: border-color 0.2s ease, background 0.2s ease, color 0.2s ease;
 }
 
+a.media-btn {
+  text-decoration: none;
+}
+
 .project-btn-row .media-btn {
   margin-top: 0;
 }
