@@ -24,6 +24,7 @@
     --text-dim: #999999;
     --text-dimmer: #5c5c5c;
     --rule: #2b2b2b;
+    --surface: #0b0b0b;
     --nav-bg: rgba(0, 0, 0, 0.85);
     --max-width: 760px;
     color-scheme: dark;
@@ -35,6 +36,7 @@
     --text-dim: #55534a;
     --text-dimmer: #918f83;
     --rule: #d9d7cc;
+    --surface: #fbfaf6;
     --nav-bg: rgba(244, 243, 238, 0.85);
     color-scheme: light;
   }
@@ -266,121 +268,207 @@
 
   /* ---------- Experience ---------- */
 
-  .entry {
-    margin-bottom: 0;
-    padding: 32px 0;
+  .exp-list {
     border-top: 1px solid var(--rule);
   }
 
-  .entry:first-of-type {
-    border-top: none;
-    padding-top: 0;
-  }
-
-  .entry:last-child {
-    padding-bottom: 0;
-  }
-
-  .entry-head {
+  .exp-row {
     display: flex;
     justify-content: space-between;
     align-items: baseline;
-    flex-wrap: wrap;
-    gap: 6px 20px;
-    margin-bottom: 6px;
+    gap: 6px 24px;
+    padding: 18px 0;
+    border-bottom: 1px solid var(--rule);
   }
 
-  .entry-org {
-    font-size: 18px;
+  .exp-title {
+    font-size: 15px;
+    color: var(--text-dim);
+  }
+
+  .exp-org {
     font-weight: 600;
     color: var(--text);
   }
 
-  .entry-date {
+  .exp-date {
     font-size: 13px;
     color: var(--text-dimmer);
     letter-spacing: 0.03em;
     white-space: nowrap;
   }
 
-  .entry-role {
-    color: var(--text-dim);
-    font-size: 13px;
-    letter-spacing: 0.04em;
-    text-transform: uppercase;
-    margin-bottom: 18px;
-  }
-
-  .entry ul {
-    margin: 0;
-    padding-left: 0;
-    list-style: none;
-    color: var(--text-dim);
-  }
-
-  .entry li {
-    margin-bottom: 10px;
-    padding-left: 20px;
-    position: relative;
+  .exp-more {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    width: 100%;
+    padding: 18px 0;
+    background: none;
+    border: none;
+    font: inherit;
     font-size: 15px;
+    color: var(--text-dim);
+    text-align: left;
+    cursor: pointer;
+    transition: color 0.2s ease;
   }
 
-  .entry li::before {
-    content: "―";
-    position: absolute;
-    left: 0;
-    color: var(--text-dimmer);
+  .exp-more:hover,
+  .exp-more:focus-visible {
+    color: var(--text);
+  }
+
+  .exp-more-arrow {
+    transition: transform 0.2s ease;
+  }
+
+  .exp-more:hover .exp-more-arrow {
+    transform: translateX(4px);
   }
 
   /* ---------- Projects ---------- */
 
-  .project {
-    padding: 28px 0;
-    border-top: 1px solid var(--rule);
+  #projects {
+    max-width: 960px;
   }
 
-  .project:first-of-type {
-    border-top: none;
-    padding-top: 0;
+  .card-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 20px;
   }
 
-  .project:last-child {
-    padding-bottom: 0;
+  .card {
+    display: flex;
+    flex-direction: column;
+    padding: 10px;
+    background: var(--surface);
+    border: 1px solid var(--rule);
+    border-radius: 22px;
+    transition: border-color 0.25s ease, transform 0.25s ease;
   }
 
-  .project-title {
-    font-size: 17px;
+  .card:hover {
+    border-color: var(--text-dimmer);
+  }
+
+  .card-media {
+    position: relative;
+    display: block;
+    width: 100%;
+    aspect-ratio: 16 / 10;
+    padding: 0;
+    overflow: hidden;
+    border: none;
+    border-radius: 14px;
+    background: var(--rule);
+    cursor: pointer;
+  }
+
+  .card-media img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    filter: grayscale(1) contrast(1.05);
+    transition: filter 0.4s ease, transform 0.6s ease;
+  }
+
+  .card:hover .card-media img,
+  .card-media:focus-visible img {
+    filter: none;
+    transform: scale(1.03);
+  }
+
+  .card-media-label {
+    position: absolute;
+    left: 12px;
+    bottom: 12px;
+    padding: 6px 12px;
+    border-radius: 999px;
+    background: var(--bg);
+    color: var(--text);
+    font-family: inherit;
+    font-size: 11px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    opacity: 0;
+    transform: translateY(4px);
+    transition: opacity 0.25s ease, transform 0.25s ease;
+  }
+
+  .card:hover .card-media-label,
+  .card-media:focus-visible .card-media-label {
+    opacity: 1;
+    transform: none;
+  }
+
+  .card-body {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    padding: 22px 14px 14px;
+  }
+
+  .card-head {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    gap: 16px;
+    margin-bottom: 14px;
+  }
+
+  .card-title {
+    font-size: 16px;
     font-weight: 600;
-    margin-bottom: 8px;
+    line-height: 1.4;
   }
 
-  .project-stack {
+  .card-index {
     font-size: 12px;
     color: var(--text-dimmer);
-    letter-spacing: 0.04em;
-    text-transform: uppercase;
-    margin-bottom: 16px;
+    letter-spacing: 0.08em;
   }
 
-  .project ul {
-    margin: 0;
-    padding-left: 0;
-    list-style: none;
+  .card-desc {
+    margin: 0 0 18px;
+    padding-left: 14px;
+    border-left: 2px solid var(--rule);
+    font-size: 14px;
+    line-height: 1.7;
     color: var(--text-dim);
   }
 
-  .project li {
-    margin-bottom: 10px;
-    padding-left: 20px;
-    position: relative;
-    font-size: 15px;
+  .card-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    margin: 0 0 18px;
+    padding: 0;
+    list-style: none;
   }
 
-  .project li::before {
-    content: "―";
-    position: absolute;
-    left: 0;
+  .card-tags li {
+    padding: 2px 10px;
+    border: 1px solid var(--rule);
+    border-radius: 999px;
+    font-size: 11px;
+    letter-spacing: 0.04em;
     color: var(--text-dimmer);
+  }
+
+  .card-body .project-btn-row {
+    margin-top: auto;
+  }
+
+  .card .media-btn {
+    border-radius: 999px;
+    padding: 9px 18px;
+  }
+
+  .card .demo-callout {
+    margin-left: 0;
   }
 
   /* ---------- Media button ---------- */
@@ -735,7 +823,8 @@
     section { padding: 80px 22px; }
     .hero { min-height: auto; padding-top: 130px; }
     .skill-row { grid-template-columns: 1fr; gap: 8px; }
-    .entry-org { font-size: 17px; }
+    .exp-row { flex-direction: column; }
+    .card-grid { grid-template-columns: 1fr; }
     .contact-links { flex-direction: column; align-items: stretch; gap: 12px; }
     .contact-links a { text-align: center; }
   }
@@ -791,40 +880,23 @@
   <span class="section-label fade-in">01</span>
   <h2 class="section-title fade-in">Experience</h2>
 
-  <div class="entry fade-in">
-    <div class="entry-head">
-      <span class="entry-org">Enedym Inc.</span>
-      <span class="entry-date">May 2026 &ndash; August 2026</span>
+  <div class="exp-list fade-in">
+    <div class="exp-row">
+      <span class="exp-title"><span class="exp-org">Enedym Inc.</span> &mdash; Electrical Engineering Intern</span>
+      <span class="exp-date">May 2026 &ndash; Aug 2026</span>
     </div>
-    <div class="entry-role">Electrical Engineering Intern &middot; Hamilton, Ontario</div>
-    <ul>
-      <li>Independently designing an in-house IoT CAN Bus Data Logger &mdash; a custom Altium PCB with real-time CAN acquisition firmware and IoT cloud connectivity &mdash; replacing a $1,000 commercial unit for under $500 in BOM cost.</li>
-      <li>Building a customer-facing web interface for streamlined data access, visualization, and remote diagnostics.</li>
-    </ul>
-  </div>
-
-  <div class="entry fade-in">
-    <div class="entry-head">
-      <span class="entry-org">McMaster Formula Electric</span>
-      <span class="entry-date">September 2025 &ndash; Present</span>
+    <div class="exp-row">
+      <span class="exp-title"><span class="exp-org">McMaster Formula Electric</span> &mdash; High Voltage Electronics Engineer</span>
+      <span class="exp-date">Sept 2025 &ndash; Present</span>
     </div>
-    <div class="entry-role">High Voltage Electronics Engineer &middot; Hamilton, Ontario</div>
-    <ul>
-      <li>Redesigned the EV Charger Controller subsystem end-to-end, from requirements derivation through manufacturing and testing, reducing BOM cost by 15%.</li>
-      <li>Built hardware test fixtures and conducted impedance testing and thermal simulations for design verification.</li>
-    </ul>
-  </div>
-
-  <div class="entry fade-in">
-    <div class="entry-head">
-      <span class="entry-org">McMaster Chem E Car Team</span>
-      <span class="entry-date">August 2025 &ndash; April 2026</span>
+    <div class="exp-row">
+      <span class="exp-title"><span class="exp-org">McMaster Chem E Car Team</span> &mdash; Circuitry Team Member</span>
+      <span class="exp-date">Aug 2025 &ndash; April 2026</span>
     </div>
-    <div class="entry-role">Circuitry Team Member &middot; Hamilton, Ontario</div>
-    <ul>
-      <li>Reverse-engineered an HP3435A multimeter with a failed display system and restored it to full working order, saving the team $150.</li>
-      <li>Built an Arduino-based data acquisition system with serial logging to Excel, validating readings against reference equipment to &plusmn;1.5% accuracy.</li>
-    </ul>
+    <button class="exp-more report-btn" type="button" data-report="resume.pdf" data-report-title="Yatukulan Vivekanandan &mdash; Resume">
+      <span>Full experience history</span>
+      <span class="exp-more-arrow">&#8594;</span>
+    </button>
   </div>
 </section>
 
@@ -834,88 +906,97 @@
   <span class="section-label fade-in">02</span>
   <h2 class="section-title fade-in">Projects</h2>
 
-  <div class="project fade-in" data-project="mech-keyboard">
-    <div class="project-title">STM32-Based Mechanical Keyboard</div>
-    <div class="project-stack">KiCAD &middot; STM32 &middot; USB &middot; C++ &middot; Embedded Firmware</div>
-    <ul>
-      <li>Designed electrical schematics and a multi-layer PCB for an 82-key keyboard built around an STM32 microcontroller.</li>
-      <li>Developed C++ firmware for real-time matrix scanning, validating timing requirements with a logic analyzer.</li>
-    </ul>
-    <button class="media-btn" type="button" data-project="mech-keyboard" hidden>
-      <span class="media-btn-icon">&#9635;</span> View Project
-    </button>
-  </div>
-
-  <div class="project fade-in" data-project="seer">
-    <div class="project-title">SEER &mdash; Object &amp; Temperature Detection Device</div>
-    <div class="project-stack">Arduino &middot; C/C++ &middot; Embedded Systems</div>
-    <ul>
-      <li>Developed an embedded sensing device for a client with Usher&rsquo;s Syndrome to improve environmental navigation.</li>
-      <li>Debugged firmware and implemented a sensor fusion algorithm achieving 90% detection accuracy.</li>
-    </ul>
-    <div class="project-btn-row">
-      <button class="media-btn" type="button" data-project="seer" hidden>
-        <span class="media-btn-icon">&#9635;</span> View Project
+  <div class="card-grid">
+    <article class="card fade-in" data-project="mech-keyboard">
+      <button class="card-media" type="button" data-project="mech-keyboard" aria-label="View STM32 mechanical keyboard gallery">
+        <img src="media/mech-keyboard/cover.jpg" alt="STM32 mechanical keyboard" loading="lazy" width="960" height="600">
+        <span class="card-media-label">View gallery &#8599;</span>
       </button>
-      <button class="media-btn report-btn" type="button" data-report="media/seer/presentation.pdf" data-report-title="SEE-R &mdash; Final Presentation">
-        <span class="media-btn-icon">&#9635;</span> View Presentation
+      <div class="card-body">
+        <div class="card-head">
+          <h3 class="card-title">STM32 Mechanical Keyboard</h3>
+          <span class="card-index">01</span>
+        </div>
+        <p class="card-desc">An 82-key keyboard on a custom multi-layer STM32 PCB, with C++ firmware for real-time matrix scanning verified on a logic analyzer.</p>
+        <ul class="card-tags"><li>KiCAD</li><li>STM32</li><li>C++</li><li>USB</li></ul>
+      </div>
+    </article>
+    <article class="card fade-in" data-project="seer">
+      <button class="card-media" type="button" data-project="seer" aria-label="View SEER detection device gallery">
+        <img src="media/seer/cover.jpg" alt="SEER detection device" loading="lazy" width="960" height="600">
+        <span class="card-media-label">View gallery &#8599;</span>
       </button>
-      <button class="demo-callout" type="button" data-video="media/seer/demo2.mp4" data-video-title="SEE-R &mdash; Demo Video">
-        <svg class="demo-callout-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-          <circle cx="12" cy="12" r="9"></circle>
-          <polygon points="10 8 16 12 10 16 10 8"></polygon>
-        </svg>
-        <svg class="demo-callout-arrow" width="64" height="46" viewBox="0 0 64 46" fill="none" aria-hidden="true">
-          <path d="M60 6 C 62 20, 50 30, 34 32 S 12 30, 8 18" stroke="currentColor" stroke-width="2" stroke-linecap="round" fill="none"/>
-          <path d="M19 15 C 14 17, 10 18, 7 19 C 9 22, 11 26, 12 31" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
-        </svg>
-        <span class="demo-callout-text">watch demo video</span>
+      <div class="card-body">
+        <div class="card-head">
+          <h3 class="card-title">SEER &mdash; Object &amp; Temperature Detection</h3>
+          <span class="card-index">02</span>
+        </div>
+        <p class="card-desc">An embedded sensing device helping a client with Usher&rsquo;s Syndrome navigate, using sensor fusion to reach 90% detection accuracy.</p>
+        <ul class="card-tags"><li>Arduino</li><li>C/C++</li><li>Sensor Fusion</li></ul>
+        <div class="project-btn-row">
+          <button class="media-btn report-btn" type="button" data-report="media/seer/presentation.pdf" data-report-title="SEE-R &mdash; Final Presentation">
+            Presentation <span class="media-btn-icon">&#8594;</span>
+          </button>
+        <button class="demo-callout" type="button" data-video="media/seer/demo2.mp4" data-video-title="SEE-R &mdash; Demo Video">
+          <svg class="demo-callout-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <circle cx="12" cy="12" r="9"></circle>
+            <polygon points="10 8 16 12 10 16 10 8"></polygon>
+          </svg>
+          <svg class="demo-callout-arrow" width="64" height="46" viewBox="0 0 64 46" fill="none" aria-hidden="true">
+            <path d="M60 6 C 62 20, 50 30, 34 32 S 12 30, 8 18" stroke="currentColor" stroke-width="2" stroke-linecap="round" fill="none"/>
+            <path d="M19 15 C 14 17, 10 18, 7 19 C 9 22, 11 26, 12 31" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+          </svg>
+          <span class="demo-callout-text">watch demo video</span>
+        </button>
+        </div>
+      </div>
+    </article>
+    <article class="card fade-in" data-project="tof-scanner">
+      <button class="card-media" type="button" data-project="tof-scanner" aria-label="View ToF spatial scanner point cloud gallery">
+        <img src="media/tof-scanner/cover.jpg" alt="ToF spatial scanner point cloud" loading="lazy" width="960" height="600">
+        <span class="card-media-label">View gallery &#8599;</span>
       </button>
-    </div>
-  </div>
-
-  <div class="project fade-in" data-project="tof-scanner">
-    <div class="project-title">ToF Spatial Scanner</div>
-    <div class="project-stack">MSP432E401Y &middot; C &middot; Stepper Motor Control &middot; I2C/UART &middot; MATLAB</div>
-    <ul>
-      <li>Developed C firmware synchronizing a stepper motor with VL53L1X time-of-flight sensor readings via I2C.</li>
-      <li>Streamed scan data over UART to MATLAB for real-time 3D point-cloud reconstruction.</li>
-      <li>Characterized scan reliability through analysis of motor timing, sensor quantization, and UART throughput.</li>
-    </ul>
-    <div class="project-btn-row">
-      <button class="media-btn" type="button" data-project="tof-scanner" hidden>
-        <span class="media-btn-icon">&#9635;</span> View Project
+      <div class="card-body">
+        <div class="card-head">
+          <h3 class="card-title">ToF Spatial Scanner</h3>
+          <span class="card-index">03</span>
+        </div>
+        <p class="card-desc">A stepper-driven VL53L1X time-of-flight scanner streaming over UART to MATLAB for real-time 3D point-cloud reconstruction.</p>
+        <ul class="card-tags"><li>MSP432E401Y</li><li>C</li><li>I2C/UART</li><li>MATLAB</li></ul>
+        <div class="project-btn-row">
+          <button class="media-btn report-btn" type="button" data-report="media/tof-scanner/report.pdf" data-report-title="ToF Spatial Scanner &mdash; Final Report">
+            Report <span class="media-btn-icon">&#8594;</span>
+          </button>
+        </div>
+      </div>
+    </article>
+    <article class="card fade-in" data-project="marine-boat">
+      <button class="card-media" type="button" data-project="marine-boat" aria-label="View Marine debris RC boat gallery">
+        <img src="media/marine-boat/cover.jpg" alt="Marine debris RC boat" loading="lazy" width="960" height="600">
+        <span class="card-media-label">View gallery &#8599;</span>
       </button>
-      <button class="media-btn report-btn" type="button" data-report="media/tof-scanner/report.pdf" data-report-title="ToF Spatial Scanner &mdash; Final Report">
-        <span class="media-btn-icon">&#9635;</span> View Report
-      </button>
-    </div>
-  </div>
-
-  <div class="project fade-in" data-project="marine-boat">
-    <div class="project-title">Marine Debris RC Boat</div>
-    <div class="project-stack">Arduino &middot; RF Control &middot; Brushless Motors &middot; ESC</div>
-    <ul>
-      <li>Built a wireless aquatic robot with dual brushless motors and ESC-driven propulsion for debris removal.</li>
-      <li>Integrated Arduino Uno with RF control and designed a waterproof housing and power circuit for stability.</li>
-      <li>Achieved smooth wireless control with 40+ minute runtime and reliable debris collection.</li>
-    </ul>
-    <div class="project-btn-row">
-      <button class="media-btn" type="button" data-project="marine-boat" hidden>
-        <span class="media-btn-icon">&#9635;</span> View Project
-      </button>
-      <button class="demo-callout" type="button" data-video="media/marine-boat/demo.mp4" data-video-title="Marine Debris RC Boat &mdash; Demo Video">
-        <svg class="demo-callout-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-          <circle cx="12" cy="12" r="9"></circle>
-          <polygon points="10 8 16 12 10 16 10 8"></polygon>
-        </svg>
-        <svg class="demo-callout-arrow" width="64" height="46" viewBox="0 0 64 46" fill="none" aria-hidden="true">
-          <path d="M60 6 C 62 20, 50 30, 34 32 S 12 30, 8 18" stroke="currentColor" stroke-width="2" stroke-linecap="round" fill="none"/>
-          <path d="M19 15 C 14 17, 10 18, 7 19 C 9 22, 11 26, 12 31" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
-        </svg>
-        <span class="demo-callout-text">watch demo video</span>
-      </button>
-    </div>
+      <div class="card-body">
+        <div class="card-head">
+          <h3 class="card-title">Marine Debris RC Boat</h3>
+          <span class="card-index">04</span>
+        </div>
+        <p class="card-desc">A wireless debris-collecting boat with dual brushless motors, RF control and a waterproof housing, running 40+ minutes per charge.</p>
+        <ul class="card-tags"><li>Arduino</li><li>RF Control</li><li>Brushless / ESC</li></ul>
+        <div class="project-btn-row">
+        <button class="demo-callout" type="button" data-video="media/marine-boat/demo.mp4" data-video-title="Marine Debris RC Boat &mdash; Demo Video">
+          <svg class="demo-callout-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <circle cx="12" cy="12" r="9"></circle>
+            <polygon points="10 8 16 12 10 16 10 8"></polygon>
+          </svg>
+          <svg class="demo-callout-arrow" width="64" height="46" viewBox="0 0 64 46" fill="none" aria-hidden="true">
+            <path d="M60 6 C 62 20, 50 30, 34 32 S 12 30, 8 18" stroke="currentColor" stroke-width="2" stroke-linecap="round" fill="none"/>
+            <path d="M19 15 C 14 17, 10 18, 7 19 C 9 22, 11 26, 12 31" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+          </svg>
+          <span class="demo-callout-text">watch demo video</span>
+        </button>
+        </div>
+      </div>
+    </article>
   </div>
 </section>
 
@@ -1061,8 +1142,7 @@
       Media convention: drop files into  media/<project-slug>/
       named 1, 2, 3 ... in order, using any of the extensions below.
       Example:  media/tof-scanner/1.jpg, media/tof-scanner/2.mp4
-      No code changes needed — the button appears automatically once
-      at least one matching file is found.
+      The card's cover image (media/<slug>/cover.jpg) opens the gallery.
     */
     var PROJECT_SLUGS = ['mech-keyboard', 'seer', 'tof-scanner', 'marine-boat'];
     var MAX_SLOTS = 12;
@@ -1129,12 +1209,7 @@
       var slots = [];
       for (var s = 1; s <= MAX_SLOTS; s++) slots.push(detectSlot(slug, s));
       return Promise.all(slots).then(function (results) {
-        var items = results.filter(Boolean);
-        library[slug] = items;
-        if (items.length > 0) {
-          var btn = document.querySelector('.media-btn[data-project="' + slug + '"]');
-          if (btn) btn.hidden = false;
-        }
+        library[slug] = results.filter(Boolean);
       });
     }
 
@@ -1231,7 +1306,7 @@
       renderItem();
     }
 
-    document.querySelectorAll('.media-btn[data-project]').forEach(function (btn) {
+    document.querySelectorAll('.card-media[data-project]').forEach(function (btn) {
       btn.addEventListener('click', function () {
         openModal(btn.getAttribute('data-project'));
       });
