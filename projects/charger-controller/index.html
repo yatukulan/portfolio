@@ -12,8 +12,8 @@
   })();
 </script>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>STM32 Mechanical Keyboard &mdash; Yatukulan Vivekanandan</title>
-<meta name="description" content="An 82-key keyboard on a custom multi-layer STM32 PCB, with C++ firmware for real-time matrix scanning verified on a logic analyzer.">
+<title>FSAE Charger Controller &mdash; Yatukulan Vivekanandan</title>
+<meta name="description" content="A redesigned FSAE charger controller with integrated safety logic and power converters for McMaster Formula Electric.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=Caveat:wght@600;700&display=swap" rel="stylesheet">
@@ -52,52 +52,49 @@
 
 <section class="page">
   <a class="back-link fade-in" href="/projects/">&#8592; Projects</a>
-  <div class="fade-in"><ul class="card-tags"><li>KiCAD</li><li>STM32</li><li>C++</li><li>USB</li></ul></div>
-  <h1 class="page-title fade-in">STM32 Mechanical Keyboard</h1>
-  <p class="page-lede fade-in">An 82-key keyboard on a custom multi-layer STM32 PCB, with C++ firmware for real-time matrix scanning verified on a logic analyzer.</p>
+  <div class="fade-in"><ul class="card-tags"><li>Power Electronics</li><li>Safety Logic</li><li>HVIL</li><li>FSAE</li></ul></div>
+  <h1 class="page-title fade-in">FSAE Charger Controller</h1>
+  <p class="page-lede fade-in">A redesigned charger controller for McMaster Formula Electric&rsquo;s accumulator charger, built to FSAE rules with integrated safety logic and power converters while cutting BOM cost by 15%.</p>
 
   <figure class="page-hero fade-in">
-    <img src="/media/mech-keyboard/cover.jpg" alt="STM32 mechanical keyboard" width="960" height="600">
+    <img src="/media/charger-controller/cover.jpg" alt="Charger controller enclosure layout" width="960" height="600">
   </figure>
 
   <div class="prose fade-in">
-    <h2>Stack</h2>
-    <p>KiCAD &middot; STM32 &middot; USB &middot; C++ &middot; Embedded Firmware</p>
+    <h2>Context</h2>
+    <p>McMaster Formula Electric &middot; High Voltage Electronics Engineer</p>
     <h2>What I did</h2>
     <ul>
-      <li>Designed electrical schematics and a multi-layer PCB for an 82-key keyboard built around an STM32 microcontroller.</li>
-      <li>Developed C++ firmware for real-time matrix scanning, validating timing requirements with a logic analyzer.</li>
+      <li>Redesigned the Charger Controller per FSAE rules, from requirements through manufacturing and testing.</li>
+      <li>Integrated safety logic circuits and power converters, reducing BOM cost by 15% through design optimization.</li>
+      <li>Built hardware test fixtures and conducted impedance testing and thermal simulations on the charger hardware.</li>
+      <li>Performed hardware debug and electrical design verification across fail-safe operating states.</li>
+      <li>Produced test plans, technical reports, and fabrication and assembly documentation for review.</li>
     </ul>
   </div>
 
   <h2 class="gallery-heading fade-in">Gallery</h2>
   <div class="gallery fade-in" data-gallery>
-    <button class="gallery-item" type="button" data-full="/media/mech-keyboard/1.png">
-      <img src="/media/mech-keyboard/thumbs/1.jpg" alt="STM32 mechanical keyboard &mdash; image 1" loading="lazy">
+    <button class="gallery-item" type="button" data-full="/media/charger-controller/1.png">
+      <img src="/media/charger-controller/thumbs/1.jpg" alt="FSAE Charger Controller &mdash; charger safety and HVIL logic simulation" loading="lazy">
     </button>
-    <button class="gallery-item" type="button" data-full="/media/mech-keyboard/2.png">
-      <img src="/media/mech-keyboard/thumbs/2.jpg" alt="STM32 mechanical keyboard &mdash; image 2" loading="lazy">
+    <button class="gallery-item" type="button" data-full="/media/charger-controller/2.png">
+      <img src="/media/charger-controller/thumbs/2.jpg" alt="FSAE Charger Controller &mdash; safety logic simulation, second operating state" loading="lazy">
     </button>
-    <button class="gallery-item" type="button" data-full="/media/mech-keyboard/3.png">
-      <img src="/media/mech-keyboard/thumbs/3.jpg" alt="STM32 mechanical keyboard &mdash; image 3" loading="lazy">
+    <button class="gallery-item" type="button" data-full="/media/charger-controller/3.png">
+      <img src="/media/charger-controller/thumbs/3.jpg" alt="FSAE Charger Controller &mdash; charger enclosure wiring diagram" loading="lazy">
     </button>
-    <button class="gallery-item" type="button" data-full="/media/mech-keyboard/4.png">
-      <img src="/media/mech-keyboard/thumbs/4.jpg" alt="STM32 mechanical keyboard &mdash; image 4" loading="lazy">
+    <button class="gallery-item" type="button" data-full="/media/charger-controller/4.png">
+      <img src="/media/charger-controller/thumbs/4.jpg" alt="FSAE Charger Controller &mdash; charger controller PCB and enclosure renders" loading="lazy">
     </button>
-    <button class="gallery-item" type="button" data-full="/media/mech-keyboard/5.png">
-      <img src="/media/mech-keyboard/thumbs/5.jpg" alt="STM32 mechanical keyboard &mdash; image 5" loading="lazy">
-    </button>
-    <button class="gallery-item" type="button" data-full="/media/mech-keyboard/6.png">
-      <img src="/media/mech-keyboard/thumbs/6.jpg" alt="STM32 mechanical keyboard &mdash; image 6" loading="lazy">
-    </button>
-    <button class="gallery-item" type="button" data-full="/media/mech-keyboard/7.png">
-      <img src="/media/mech-keyboard/thumbs/7.jpg" alt="STM32 mechanical keyboard &mdash; image 7" loading="lazy">
+    <button class="gallery-item" type="button" data-full="/media/charger-controller/5.png">
+      <img src="/media/charger-controller/thumbs/5.jpg" alt="FSAE Charger Controller &mdash; enclosure layout, top view" loading="lazy">
     </button>
   </div>
 
   <div class="pager" role="navigation" aria-label="More projects">
-    <a href="/projects/charger-controller/"><span>&#8592; Previous</span>FSAE Charger Controller</a>
-    <a class="pager-next" href="/projects/seer/"><span>Next &#8594;</span>SEER &mdash; Object &amp; Temperature Detection</a>
+    <a href="/projects/can-logger/"><span>&#8592; Previous</span>IoT CAN Bus Data Logger</a>
+    <a class="pager-next" href="/projects/mech-keyboard/"><span>Next &#8594;</span>STM32 Mechanical Keyboard</a>
   </div>
 </section>
 
