@@ -210,14 +210,8 @@ section {
   line-height: 1.8;
 }
 
-.hero-resume-btn {
-  margin-top: 24px;
-  transform: scale(0.5);
-  transform-origin: left center;
-}
-
 .hero-portfolio-btn {
-  margin-top: -8px;
+  margin-top: 24px;
   transform: scale(0.5);
   transform-origin: left center;
 }
