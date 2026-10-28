@@ -130,7 +130,29 @@
       data-embed="page.html"  data-embed-title="..."   -> interactive page in an iframe
         data-embed-fallback / data-embed-fallback-light  -> image shown instead below 500px wide
       .gallery-item[data-full] inside [data-gallery]   -> image gallery with prev/next
+    Inline figures:
+      data-inline-embed="page.html" data-embed-title="..." -> swaps its static fallback for the live
+        page in place, cropped to the figure, from 500px wide up
   */
+  var EMBED_MIN_WIDTH = 500;
+
+  // Same-origin figure pages carry their own light and dark palettes; keep them on the site's theme.
+  function syncEmbedTheme(iframe) {
+    try {
+      var body = iframe.contentDocument.body;
+      if (!body.hasAttribute('data-theme')) return;
+      var light = document.documentElement.getAttribute('data-theme') === 'light';
+      body.setAttribute('data-theme', light ? 'light' : 'dark');
+    } catch (err) {}
+  }
+
+  function figureIn(doc) {
+    return doc.querySelector('.iso-plate') || doc.querySelector('main');
+  }
+
+  new MutationObserver(function () {
+    document.querySelectorAll('.hero-embed iframe, .media-modal-stage iframe').forEach(syncEmbedTheme);
+  }).observe(document.documentElement, { attributes: true, attributeFilter: ['data-theme'] });
   var modal = document.createElement('div');
   modal.className = 'media-modal';
   modal.hidden = true;
@@ -210,7 +232,7 @@
     gallery.items = [];
     stage.innerHTML = '';
     counter.textContent = title || '';
-    if (fallback && window.innerWidth < 500) {
+    if (fallback && window.innerWidth < EMBED_MIN_WIDTH) {
       var img = document.createElement('img');
       img.src = fallback;
       img.alt = title || '';
@@ -222,15 +244,12 @@
     iframe.src = src;
     iframe.title = title || 'Interactive figure';
     iframe.addEventListener('load', function () {
-      // Same-origin page: match its theme to the site's, centre its content in the frame,
-      // hand it keyboard focus and let Escape close the viewer from inside it.
+      // Same-origin page: centre its figure in the frame, hand it keyboard focus
+      // and let Escape close the viewer from inside it.
+      syncEmbedTheme(iframe);
       try {
         var doc = iframe.contentDocument;
-        if (doc.body.hasAttribute('data-theme')) {
-          var light = document.documentElement.getAttribute('data-theme') === 'light';
-          doc.body.setAttribute('data-theme', light ? 'light' : 'dark');
-        }
-        var focus = doc.querySelector('.iso-plate') || doc.querySelector('main');
+        var focus = figureIn(doc);
         if (focus) {
           var box = focus.getBoundingClientRect();
           doc.scrollingElement.scrollTop += box.top + box.height / 2 - iframe.clientHeight / 2;
@@ -243,6 +262,47 @@
     });
     stage.appendChild(iframe);
     show('embed', false);
+  }
+
+  function mountInlineEmbed(holder) {
+    var iframe = document.createElement('iframe');
+    iframe.src = holder.getAttribute('data-inline-embed');
+    iframe.title = holder.getAttribute('data-embed-title') || 'Interactive figure';
+    // Page wheel scrolling passes straight through; the frame is cropped and scrolled in code.
+    iframe.setAttribute('scrolling', 'no');
+
+    function crop() {
+      try {
+        var doc = iframe.contentDocument;
+        var figure = figureIn(doc);
+        if (!figure) return;
+        var gap = 16;
+        var scroller = doc.scrollingElement;
+        var top = figure.getBoundingClientRect().top + scroller.scrollTop;
+        iframe.style.height = Math.ceil(figure.offsetHeight + gap * 2) + 'px';
+        scroller.scrollTop = top - gap;
+      } catch (err) {}
+    }
+
+    // The static figure stays in place until the live one has loaded and been cropped.
+    iframe.addEventListener('load', function () {
+      syncEmbedTheme(iframe);
+      Array.prototype.slice.call(holder.children).forEach(function (child) {
+        if (child !== iframe) holder.removeChild(child);
+      });
+      holder.classList.add('is-live');
+      crop();
+    });
+    var pending = 0;
+    window.addEventListener('resize', function () {
+      cancelAnimationFrame(pending);
+      pending = requestAnimationFrame(crop);
+    });
+    holder.appendChild(iframe);
+  }
+
+  if (window.innerWidth >= EMBED_MIN_WIDTH) {
+    document.querySelectorAll('[data-inline-embed]').forEach(mountInlineEmbed);
   }
 
   function closeModal() {
