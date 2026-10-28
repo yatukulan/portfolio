@@ -69,14 +69,27 @@
       <span class="group-count">01</span>
     </div>
     <div class="card-grid">
-      <article class="card card-text fade-in">
+      <article class="card fade-in">
+        <figure class="card-figure">
+          <button class="card-media card-media-figure" type="button" data-embed="/projects/systolic-array/systolic-array-interactive.html" data-embed-title="4&times;4 systolic array interactive figure" data-embed-fallback="/projects/systolic-array/systolic-array-dark.svg" data-embed-fallback-light="/projects/systolic-array/systolic-array-light.svg" aria-label="Open the interactive 4&times;4 systolic array figure">
+            <img class="theme-img-dark" src="/projects/systolic-array/systolic-array-dark.svg" alt="4&times;4 systolic array drawn as a bench-top machine" loading="lazy" width="640" height="370">
+            <img class="theme-img-light" src="/projects/systolic-array/systolic-array-light.svg" alt="4&times;4 systolic array drawn as a bench-top machine" loading="lazy" width="640" height="370">
+            <span class="card-media-label">Interactive figure &#8594;</span>
+          </button>
+          <figcaption class="figure-credit"><a href="https://github.com/wheresryan22/anatomy" target="_blank" rel="noopener">Figure built with Anatomy (MIT)</a></figcaption>
+        </figure>
         <div class="card-body">
           <div class="card-head">
-            <h3 class="card-title">4&times;4 Systolic Array</h3>
+            <h3 class="card-title"><a href="/projects/systolic-array/">4&times;4 INT8 Systolic Array</a></h3>
             <span class="card-index">01</span>
           </div>
-          <p class="card-desc">A 4&times;4 grid of multiply-accumulate processing elements that streams operands through the array to compute matrix products, designed in RTL and verified in simulation.</p>
-          <ul class="card-tags"><li>RTL Design</li><li>Verification</li><li>Matrix Multiply</li></ul>
+          <p class="card-desc">A matrix-multiply accelerator built as a 4&times;4 grid of INT8 multiply-accumulate units, verified with self-checking seeded random testbenches and a Python regression flow, and run on a DE2-115 FPGA over UART.</p>
+          <ul class="card-tags"><li>SystemVerilog</li><li>FPGA (DE2-115)</li><li>Verification</li><li>UART</li></ul>
+          <div class="project-btn-row">
+            <a class="media-btn" href="https://github.com/yatukulan/systolic_array" target="_blank" rel="noopener">
+              GitHub <span class="media-btn-icon">&#8599;</span>
+            </a>
+          </div>
         </div>
       </article>
     </div>

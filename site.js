@@ -127,6 +127,8 @@
     Media viewer, shared by every page.
       data-report="file.pdf"  data-report-title="..."  -> PDF viewer
       data-video="file.mp4"   data-video-title="..."   -> video player
+      data-embed="page.html"  data-embed-title="..."   -> interactive page in an iframe
+        data-embed-fallback / data-embed-fallback-light  -> image shown instead below 500px wide
       .gallery-item[data-full] inside [data-gallery]   -> image gallery with prev/next
   */
   var modal = document.createElement('div');
@@ -152,8 +154,10 @@
 
   function pad(n) { return String(n).padStart(2, '0'); }
 
-  function show(pdf, navigable) {
-    dialog.classList.toggle('pdf-mode', pdf);
+  function show(mode, navigable) {
+    dialog.classList.toggle('pdf-mode', mode === 'pdf');
+    dialog.classList.toggle('embed-mode', mode === 'embed');
+    dialog.classList.toggle('figure-mode', mode === 'figure');
     prevBtn.hidden = !navigable;
     nextBtn.hidden = !navigable;
     modal.hidden = false;
@@ -175,7 +179,7 @@
     gallery.items = items;
     gallery.index = index;
     renderGallery();
-    show(false, true);
+    show('', true);
   }
 
   function openReport(src, title) {
@@ -186,7 +190,7 @@
     iframe.title = title || 'Report';
     stage.appendChild(iframe);
     counter.textContent = title || '';
-    show(true, false);
+    show('pdf', false);
   }
 
   function openVideo(src, title) {
@@ -199,7 +203,46 @@
     video.playsInline = true;
     stage.appendChild(video);
     counter.textContent = title || '';
-    show(false, false);
+    show('', false);
+  }
+
+  function openEmbed(src, title, fallback) {
+    gallery.items = [];
+    stage.innerHTML = '';
+    counter.textContent = title || '';
+    if (fallback && window.innerWidth < 500) {
+      var img = document.createElement('img');
+      img.src = fallback;
+      img.alt = title || '';
+      stage.appendChild(img);
+      show('figure', false);
+      return;
+    }
+    var iframe = document.createElement('iframe');
+    iframe.src = src;
+    iframe.title = title || 'Interactive figure';
+    iframe.addEventListener('load', function () {
+      // Same-origin page: match its theme to the site's, centre its content in the frame,
+      // hand it keyboard focus and let Escape close the viewer from inside it.
+      try {
+        var doc = iframe.contentDocument;
+        if (doc.body.hasAttribute('data-theme')) {
+          var light = document.documentElement.getAttribute('data-theme') === 'light';
+          doc.body.setAttribute('data-theme', light ? 'light' : 'dark');
+        }
+        var focus = doc.querySelector('.iso-plate') || doc.querySelector('main');
+        if (focus) {
+          var box = focus.getBoundingClientRect();
+          doc.scrollingElement.scrollTop += box.top + box.height / 2 - iframe.clientHeight / 2;
+        }
+        doc.addEventListener('keydown', function (e) {
+          if (e.key === 'Escape') closeModal();
+        });
+        (doc.querySelector('[tabindex="0"]') || iframe).focus({ preventScroll: true });
+      } catch (err) {}
+    });
+    stage.appendChild(iframe);
+    show('embed', false);
   }
 
   function closeModal() {
@@ -217,11 +260,15 @@
   }
 
   document.addEventListener('click', function (e) {
-    var el = e.target.closest('[data-report], [data-video], .gallery-item[data-full]');
+    var el = e.target.closest('[data-report], [data-video], [data-embed], .gallery-item[data-full]');
     if (!el || modal.contains(el)) return;
     e.preventDefault();
     if (el.hasAttribute('data-report')) {
       openReport(el.getAttribute('data-report'), el.getAttribute('data-report-title'));
+    } else if (el.hasAttribute('data-embed')) {
+      var light = document.documentElement.getAttribute('data-theme') === 'light';
+      var fallback = (light && el.getAttribute('data-embed-fallback-light')) || el.getAttribute('data-embed-fallback');
+      openEmbed(el.getAttribute('data-embed'), el.getAttribute('data-embed-title'), fallback);
     } else if (el.hasAttribute('data-video')) {
       openVideo(el.getAttribute('data-video'), el.getAttribute('data-video-title'));
     } else {
