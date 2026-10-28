@@ -92,144 +92,192 @@
   <span class="section-label fade-in">02</span>
   <h2 class="section-title fade-in">Projects</h2>
 
-  <div class="card-grid">
-    <article class="card fade-in">
-      <a class="card-media" href="/projects/can-logger/" aria-label="IoT CAN Bus Data Logger project page">
-        <img src="/media/can-logger/cover.jpg" alt="IoT CAN bus data logger PCB" loading="lazy" width="960" height="600">
-        <span class="card-media-label">View project &#8594;</span>
-      </a>
-      <div class="card-body">
-        <div class="card-head">
-          <h3 class="card-title"><a href="/projects/can-logger/">IoT CAN Bus Data Logger</a></h3>
-          <span class="card-index">01</span>
+  <div class="project-tabs fade-in" role="tablist" aria-label="Project categories">
+    <button class="project-tab" type="button" role="tab" data-tab="all" aria-selected="true">All</button>
+    <button class="project-tab" type="button" role="tab" data-tab="hdv" aria-selected="false">Hardware Design &amp; Verification</button>
+    <button class="project-tab" type="button" role="tab" data-tab="pcb" aria-selected="false">PCB Design</button>
+    <button class="project-tab" type="button" role="tab" data-tab="embedded" aria-selected="false">Embedded Systems</button>
+    <button class="project-tab" type="button" role="tab" data-tab="other" aria-selected="false">Other</button>
+  </div>
+
+  <div class="project-group" data-group="hdv">
+    <div class="group-head fade-in">
+      <h3 class="group-title">Hardware Design &amp; Verification</h3>
+      <span class="group-count">01</span>
+    </div>
+    <div class="card-grid">
+      <article class="card card-text fade-in">
+        <div class="card-body">
+          <div class="card-head">
+            <h3 class="card-title">4&times;4 Systolic Array</h3>
+            <span class="card-index">01</span>
+          </div>
+          <p class="card-desc">A 4&times;4 grid of multiply-accumulate processing elements that streams operands through the array to compute matrix products, designed in RTL and verified in simulation.</p>
+          <ul class="card-tags"><li>RTL Design</li><li>Verification</li><li>Matrix Multiply</li></ul>
         </div>
-        <p class="card-desc">A custom Altium PCB with real-time CAN acquisition firmware and IoT cloud connectivity, built in-house at Enedym to replace a $1,000 commercial logger for under $500 in BOM cost.</p>
-        <ul class="card-tags"><li>Altium</li><li>CAN Bus</li><li>IoT</li><li>Embedded Firmware</li></ul>
-        <div class="project-btn-row">
-          <a class="media-btn" href="https://actiumev.com/telemetry/" target="_blank" rel="noopener">
-            Product page <span class="media-btn-icon">&#8599;</span>
-          </a>
+      </article>
+    </div>
+  </div>
+  <div class="project-group" data-group="pcb">
+    <div class="group-head fade-in">
+      <h3 class="group-title">PCB Design</h3>
+      <span class="group-count">03</span>
+    </div>
+    <div class="card-grid">
+      <article class="card fade-in">
+        <a class="card-media" href="/projects/can-logger/" aria-label="IoT CAN Bus Data Logger project page">
+          <img src="/media/can-logger/cover.jpg" alt="IoT CAN bus data logger PCB" loading="lazy" width="960" height="600">
+          <span class="card-media-label">View project &#8594;</span>
+        </a>
+        <div class="card-body">
+          <div class="card-head">
+            <h3 class="card-title"><a href="/projects/can-logger/">IoT CAN Bus Data Logger</a></h3>
+            <span class="card-index">02</span>
+          </div>
+          <p class="card-desc">A custom Altium PCB with real-time CAN acquisition firmware and IoT cloud connectivity, built in-house at Enedym to replace a $1,000 commercial logger for under $500 in BOM cost.</p>
+          <ul class="card-tags"><li>Altium</li><li>CAN Bus</li><li>IoT</li><li>Embedded Firmware</li></ul>
+          <div class="project-btn-row">
+            <a class="media-btn" href="https://actiumev.com/telemetry/" target="_blank" rel="noopener">
+              Product page <span class="media-btn-icon">&#8599;</span>
+            </a>
+          </div>
         </div>
-      </div>
-    </article>
-    <article class="card fade-in">
-      <a class="card-media" href="/projects/charger-controller/" aria-label="FSAE Charger Controller project page">
-        <img src="/media/charger-controller/cover.jpg" alt="Charger controller enclosure layout" loading="lazy" width="960" height="600">
-        <span class="card-media-label">View project &#8594;</span>
-      </a>
-      <div class="card-body">
-        <div class="card-head">
-          <h3 class="card-title"><a href="/projects/charger-controller/">FSAE Charger Controller</a></h3>
-          <span class="card-index">02</span>
+      </article>
+      <article class="card fade-in">
+        <a class="card-media" href="/projects/charger-controller/" aria-label="FSAE Charger Controller project page">
+          <img src="/media/charger-controller/cover.jpg" alt="Charger controller enclosure layout" loading="lazy" width="960" height="600">
+          <span class="card-media-label">View project &#8594;</span>
+        </a>
+        <div class="card-body">
+          <div class="card-head">
+            <h3 class="card-title"><a href="/projects/charger-controller/">FSAE Charger Controller</a></h3>
+            <span class="card-index">03</span>
+          </div>
+          <p class="card-desc">A redesigned charger controller for McMaster Formula Electric&rsquo;s accumulator charger, built to FSAE rules with integrated safety logic and power converters while cutting BOM cost by 15%.</p>
+          <ul class="card-tags"><li>Power Electronics</li><li>Safety Logic</li><li>HVIL</li><li>FSAE</li></ul>
         </div>
-        <p class="card-desc">A redesigned charger controller for McMaster Formula Electric&rsquo;s accumulator charger, built to FSAE rules with integrated safety logic and power converters while cutting BOM cost by 15%.</p>
-        <ul class="card-tags"><li>Power Electronics</li><li>Safety Logic</li><li>HVIL</li><li>FSAE</li></ul>
-      </div>
-    </article>
-    <article class="card fade-in">
-      <a class="card-media" href="/projects/mech-keyboard/" aria-label="STM32 mechanical keyboard project page">
-        <img src="/media/mech-keyboard/cover.jpg" alt="STM32 mechanical keyboard" loading="lazy" width="960" height="600">
-        <span class="card-media-label">View project &#8594;</span>
-      </a>
-      <div class="card-body">
-        <div class="card-head">
-          <h3 class="card-title"><a href="/projects/mech-keyboard/">STM32 Mechanical Keyboard</a></h3>
-          <span class="card-index">03</span>
+      </article>
+      <article class="card fade-in">
+        <a class="card-media" href="/projects/mech-keyboard/" aria-label="STM32 mechanical keyboard project page">
+          <img src="/media/mech-keyboard/cover.jpg" alt="STM32 mechanical keyboard" loading="lazy" width="960" height="600">
+          <span class="card-media-label">View project &#8594;</span>
+        </a>
+        <div class="card-body">
+          <div class="card-head">
+            <h3 class="card-title"><a href="/projects/mech-keyboard/">STM32 Mechanical Keyboard</a></h3>
+            <span class="card-index">04</span>
+          </div>
+          <p class="card-desc">An 82-key keyboard on a custom multi-layer STM32 PCB, with C++ firmware for real-time matrix scanning verified on a logic analyzer.</p>
+          <ul class="card-tags"><li>KiCAD</li><li>STM32</li><li>C++</li><li>USB</li></ul>
         </div>
-        <p class="card-desc">An 82-key keyboard on a custom multi-layer STM32 PCB, with C++ firmware for real-time matrix scanning verified on a logic analyzer.</p>
-        <ul class="card-tags"><li>KiCAD</li><li>STM32</li><li>C++</li><li>USB</li></ul>
-      </div>
-    </article>
-    <article class="card fade-in">
-      <a class="card-media" href="/projects/seer/" aria-label="SEER detection device project page">
-        <img src="/media/seer/cover.jpg" alt="SEER detection device" loading="lazy" width="960" height="600">
-        <span class="card-media-label">View project &#8594;</span>
-      </a>
-      <div class="card-body">
-        <div class="card-head">
-          <h3 class="card-title"><a href="/projects/seer/">SEER &mdash; Object &amp; Temperature Detection</a></h3>
-          <span class="card-index">04</span>
+      </article>
+    </div>
+  </div>
+  <div class="project-group" data-group="embedded">
+    <div class="group-head fade-in">
+      <h3 class="group-title">Embedded Systems</h3>
+      <span class="group-count">02</span>
+    </div>
+    <div class="card-grid">
+      <article class="card fade-in">
+        <a class="card-media" href="/projects/seer/" aria-label="SEER detection device project page">
+          <img src="/media/seer/cover.jpg" alt="SEER detection device" loading="lazy" width="960" height="600">
+          <span class="card-media-label">View project &#8594;</span>
+        </a>
+        <div class="card-body">
+          <div class="card-head">
+            <h3 class="card-title"><a href="/projects/seer/">SEER &mdash; Object &amp; Temperature Detection</a></h3>
+            <span class="card-index">05</span>
+          </div>
+          <p class="card-desc">An embedded sensing device helping a client with Usher&rsquo;s Syndrome navigate, using sensor fusion to reach 90% detection accuracy.</p>
+          <ul class="card-tags"><li>Arduino</li><li>C/C++</li><li>Sensor Fusion</li></ul>
+          <div class="project-btn-row">
+            <button class="media-btn report-btn" type="button" data-report="/media/seer/presentation.pdf" data-report-title="SEE-R &mdash; Final Presentation">
+              Presentation <span class="media-btn-icon">&#8594;</span>
+            </button>
+            <button class="demo-callout" type="button" data-video="/media/seer/demo2.mp4" data-video-title="SEE-R &mdash; Demo Video">
+              <svg class="demo-callout-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <circle cx="12" cy="12" r="9"></circle>
+                <polygon points="10 8 16 12 10 16 10 8"></polygon>
+              </svg>
+              <svg class="demo-callout-arrow" width="64" height="46" viewBox="0 0 64 46" fill="none" aria-hidden="true">
+                <path d="M60 6 C 62 20, 50 30, 34 32 S 12 30, 8 18" stroke="currentColor" stroke-width="2" stroke-linecap="round" fill="none"/>
+                <path d="M19 15 C 14 17, 10 18, 7 19 C 9 22, 11 26, 12 31" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+              </svg>
+              <span class="demo-callout-text">watch demo video</span>
+            </button>
+          </div>
         </div>
-        <p class="card-desc">An embedded sensing device helping a client with Usher&rsquo;s Syndrome navigate, using sensor fusion to reach 90% detection accuracy.</p>
-        <ul class="card-tags"><li>Arduino</li><li>C/C++</li><li>Sensor Fusion</li></ul>
-        <div class="project-btn-row">
-          <button class="media-btn report-btn" type="button" data-report="/media/seer/presentation.pdf" data-report-title="SEE-R &mdash; Final Presentation">
-            Presentation <span class="media-btn-icon">&#8594;</span>
-          </button>
-          <button class="demo-callout" type="button" data-video="/media/seer/demo2.mp4" data-video-title="SEE-R &mdash; Demo Video">
-            <svg class="demo-callout-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-              <circle cx="12" cy="12" r="9"></circle>
-              <polygon points="10 8 16 12 10 16 10 8"></polygon>
-            </svg>
-            <svg class="demo-callout-arrow" width="64" height="46" viewBox="0 0 64 46" fill="none" aria-hidden="true">
-              <path d="M60 6 C 62 20, 50 30, 34 32 S 12 30, 8 18" stroke="currentColor" stroke-width="2" stroke-linecap="round" fill="none"/>
-              <path d="M19 15 C 14 17, 10 18, 7 19 C 9 22, 11 26, 12 31" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
-            </svg>
-            <span class="demo-callout-text">watch demo video</span>
-          </button>
+      </article>
+      <article class="card fade-in">
+        <a class="card-media" href="/projects/tof-scanner/" aria-label="ToF spatial scanner point cloud project page">
+          <img src="/media/tof-scanner/cover.jpg" alt="ToF spatial scanner point cloud" loading="lazy" width="960" height="600">
+          <span class="card-media-label">View project &#8594;</span>
+        </a>
+        <div class="card-body">
+          <div class="card-head">
+            <h3 class="card-title"><a href="/projects/tof-scanner/">ToF Spatial Scanner</a></h3>
+            <span class="card-index">06</span>
+          </div>
+          <p class="card-desc">A stepper-driven VL53L1X time-of-flight scanner streaming over UART to MATLAB for real-time 3D point-cloud reconstruction.</p>
+          <ul class="card-tags"><li>COMPENG 2DX3</li><li>MSP432E401Y</li><li>C</li><li>I2C/UART</li><li>MATLAB</li></ul>
+          <div class="project-btn-row">
+            <button class="media-btn report-btn" type="button" data-report="/media/tof-scanner/report.pdf" data-report-title="ToF Spatial Scanner &mdash; Final Report">
+              Report <span class="media-btn-icon">&#8594;</span>
+            </button>
+          </div>
         </div>
-      </div>
-    </article>
-    <article class="card fade-in">
-      <a class="card-media" href="/projects/tof-scanner/" aria-label="ToF spatial scanner point cloud project page">
-        <img src="/media/tof-scanner/cover.jpg" alt="ToF spatial scanner point cloud" loading="lazy" width="960" height="600">
-        <span class="card-media-label">View project &#8594;</span>
-      </a>
-      <div class="card-body">
-        <div class="card-head">
-          <h3 class="card-title"><a href="/projects/tof-scanner/">ToF Spatial Scanner</a></h3>
-          <span class="card-index">05</span>
+      </article>
+    </div>
+  </div>
+  <div class="project-group" data-group="other">
+    <div class="group-head fade-in">
+      <h3 class="group-title">Other Projects</h3>
+      <span class="group-count">02</span>
+    </div>
+    <div class="card-grid">
+      <article class="card fade-in">
+        <a class="card-media" href="/projects/marine-boat/" aria-label="Marine debris RC boat project page">
+          <img src="/media/marine-boat/cover.jpg" alt="Marine debris RC boat" loading="lazy" width="960" height="600">
+          <span class="card-media-label">View project &#8594;</span>
+        </a>
+        <div class="card-body">
+          <div class="card-head">
+            <h3 class="card-title"><a href="/projects/marine-boat/">Marine Debris RC Boat</a></h3>
+            <span class="card-index">07</span>
+          </div>
+          <p class="card-desc">A wireless debris-collecting boat with dual brushless motors, RF control and a waterproof housing, running 40+ minutes per charge.</p>
+          <ul class="card-tags"><li>Arduino</li><li>RF Control</li><li>Brushless / ESC</li></ul>
+          <div class="project-btn-row">
+            <button class="demo-callout" type="button" data-video="/media/marine-boat/demo.mp4" data-video-title="Marine Debris RC Boat &mdash; Demo Video">
+              <svg class="demo-callout-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <circle cx="12" cy="12" r="9"></circle>
+                <polygon points="10 8 16 12 10 16 10 8"></polygon>
+              </svg>
+              <svg class="demo-callout-arrow" width="64" height="46" viewBox="0 0 64 46" fill="none" aria-hidden="true">
+                <path d="M60 6 C 62 20, 50 30, 34 32 S 12 30, 8 18" stroke="currentColor" stroke-width="2" stroke-linecap="round" fill="none"/>
+                <path d="M19 15 C 14 17, 10 18, 7 19 C 9 22, 11 26, 12 31" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+              </svg>
+              <span class="demo-callout-text">watch demo video</span>
+            </button>
+          </div>
         </div>
-        <p class="card-desc">A stepper-driven VL53L1X time-of-flight scanner streaming over UART to MATLAB for real-time 3D point-cloud reconstruction.</p>
-        <ul class="card-tags"><li>MSP432E401Y</li><li>C</li><li>I2C/UART</li><li>MATLAB</li></ul>
-        <div class="project-btn-row">
-          <button class="media-btn report-btn" type="button" data-report="/media/tof-scanner/report.pdf" data-report-title="ToF Spatial Scanner &mdash; Final Report">
-            Report <span class="media-btn-icon">&#8594;</span>
-          </button>
+      </article>
+      <article class="card fade-in">
+        <a class="card-media" href="/projects/multimeter/" aria-label="HP 3435A multimeter project page">
+          <img src="/media/multimeter/cover.jpg" alt="HP 3435A multimeter internals" loading="lazy" width="960" height="600">
+          <span class="card-media-label">View project &#8594;</span>
+        </a>
+        <div class="card-body">
+          <div class="card-head">
+            <h3 class="card-title"><a href="/projects/multimeter/">HP 3435A Multimeter Restoration</a></h3>
+            <span class="card-index">08</span>
+          </div>
+          <p class="card-desc">Reverse-engineered a vintage HP 3435A multimeter with a failed display system and restored it to full working order, saving the team $150.</p>
+          <ul class="card-tags"><li>Reverse Engineering</li><li>Hardware Debug</li><li>Test Equipment</li></ul>
         </div>
-      </div>
-    </article>
-    <article class="card fade-in">
-      <a class="card-media" href="/projects/marine-boat/" aria-label="Marine debris RC boat project page">
-        <img src="/media/marine-boat/cover.jpg" alt="Marine debris RC boat" loading="lazy" width="960" height="600">
-        <span class="card-media-label">View project &#8594;</span>
-      </a>
-      <div class="card-body">
-        <div class="card-head">
-          <h3 class="card-title"><a href="/projects/marine-boat/">Marine Debris RC Boat</a></h3>
-          <span class="card-index">06</span>
-        </div>
-        <p class="card-desc">A wireless debris-collecting boat with dual brushless motors, RF control and a waterproof housing, running 40+ minutes per charge.</p>
-        <ul class="card-tags"><li>Arduino</li><li>RF Control</li><li>Brushless / ESC</li></ul>
-        <div class="project-btn-row">
-          <button class="demo-callout" type="button" data-video="/media/marine-boat/demo.mp4" data-video-title="Marine Debris RC Boat &mdash; Demo Video">
-            <svg class="demo-callout-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-              <circle cx="12" cy="12" r="9"></circle>
-              <polygon points="10 8 16 12 10 16 10 8"></polygon>
-            </svg>
-            <svg class="demo-callout-arrow" width="64" height="46" viewBox="0 0 64 46" fill="none" aria-hidden="true">
-              <path d="M60 6 C 62 20, 50 30, 34 32 S 12 30, 8 18" stroke="currentColor" stroke-width="2" stroke-linecap="round" fill="none"/>
-              <path d="M19 15 C 14 17, 10 18, 7 19 C 9 22, 11 26, 12 31" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
-            </svg>
-            <span class="demo-callout-text">watch demo video</span>
-          </button>
-        </div>
-      </div>
-    </article>
-    <article class="card fade-in">
-      <a class="card-media" href="/projects/multimeter/" aria-label="HP 3435A multimeter project page">
-        <img src="/media/multimeter/cover.jpg" alt="HP 3435A multimeter internals" loading="lazy" width="960" height="600">
-        <span class="card-media-label">View project &#8594;</span>
-      </a>
-      <div class="card-body">
-        <div class="card-head">
-          <h3 class="card-title"><a href="/projects/multimeter/">HP 3435A Multimeter Restoration</a></h3>
-          <span class="card-index">07</span>
-        </div>
-        <p class="card-desc">Reverse-engineered a vintage HP 3435A multimeter with a failed display system and restored it to full working order, saving the team $150.</p>
-        <ul class="card-tags"><li>Reverse Engineering</li><li>Hardware Debug</li><li>Test Equipment</li></ul>
-      </div>
-    </article>
+      </article>
+    </div>
   </div>
   <a class="exp-more more-standalone fade-in" href="/projects/">
     <span>All projects</span>

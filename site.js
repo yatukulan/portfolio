@@ -79,6 +79,51 @@
 
 (function () {
   /*
+    Project category tabs.
+      .project-tab[data-tab]  -> shows the .project-group[data-group] with the same key ("all" shows every group)
+  */
+  document.querySelectorAll('.project-tabs').forEach(function (bar) {
+    var tabs = Array.prototype.slice.call(bar.querySelectorAll('.project-tab'));
+    var groups = Array.prototype.slice.call(bar.parentNode.querySelectorAll('.project-group[data-group]'));
+
+    function select(tab) {
+      var key = tab.getAttribute('data-tab');
+      tabs.forEach(function (t) {
+        t.setAttribute('aria-selected', t === tab ? 'true' : 'false');
+        t.tabIndex = t === tab ? 0 : -1;
+      });
+      groups.forEach(function (g) {
+        var show = key === 'all' || g.getAttribute('data-group') === key;
+        g.hidden = !show;
+        g.classList.remove('tab-enter');
+        if (show) {
+          void g.offsetWidth;
+          g.classList.add('tab-enter');
+          g.querySelectorAll('.fade-in').forEach(function (el) { el.classList.add('visible'); });
+        }
+      });
+    }
+
+    tabs.forEach(function (tab, i) {
+      tab.tabIndex = tab.getAttribute('aria-selected') === 'true' ? 0 : -1;
+      tab.addEventListener('click', function () { select(tab); });
+      tab.addEventListener('keydown', function (e) {
+        var next = null;
+        if (e.key === 'ArrowRight') next = tabs[(i + 1) % tabs.length];
+        if (e.key === 'ArrowLeft') next = tabs[(i - 1 + tabs.length) % tabs.length];
+        if (e.key === 'Home') next = tabs[0];
+        if (e.key === 'End') next = tabs[tabs.length - 1];
+        if (!next) return;
+        e.preventDefault();
+        next.focus();
+        select(next);
+      });
+    });
+  });
+})();
+
+(function () {
+  /*
     Media viewer, shared by every page.
       data-report="file.pdf"  data-report-title="..."  -> PDF viewer
       data-video="file.mp4"   data-video-title="..."   -> video player

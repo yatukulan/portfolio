@@ -303,6 +303,88 @@ hr.rule {
 
 /* ---------- Projects ---------- */
 
+.project-tabs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 44px;
+}
+
+.page-lede + .project-tabs {
+  margin-top: 56px;
+}
+
+.project-tab {
+  padding: 8px 16px;
+  border: 1px solid var(--rule);
+  border-radius: 999px;
+  background: none;
+  color: var(--text-dim);
+  font: inherit;
+  font-size: 12px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  white-space: nowrap;
+  cursor: pointer;
+  transition: color 0.2s ease, border-color 0.2s ease, background-color 0.2s ease;
+}
+
+.project-tab:hover {
+  color: var(--text);
+  border-color: var(--text-dimmer);
+}
+
+.project-tab[aria-selected="true"] {
+  background: var(--text);
+  border-color: var(--text);
+  color: var(--bg);
+}
+
+.project-tab:focus-visible {
+  outline: 2px solid var(--text);
+  outline-offset: 2px;
+}
+
+.project-group:not([hidden]) ~ .project-group:not([hidden]) {
+  margin-top: 72px;
+}
+
+.project-group.tab-enter {
+  animation: tab-enter 0.35s ease;
+}
+
+@keyframes tab-enter {
+  from { opacity: 0; transform: translateY(8px); }
+  to { opacity: 1; transform: none; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .project-group.tab-enter { animation: none; }
+}
+
+.group-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 16px;
+  padding-bottom: 14px;
+  margin-bottom: 24px;
+  border-bottom: 1px solid var(--rule);
+}
+
+.group-title {
+  font-size: 14px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.group-count {
+  font-size: 12px;
+  color: var(--text-dimmer);
+  letter-spacing: 0.08em;
+}
+
 .card-grid {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -798,6 +880,15 @@ footer {
   .skill-row { grid-template-columns: 1fr; gap: 8px; }
   .exp-row { flex-direction: column; }
   .card-grid { grid-template-columns: 1fr; }
+  .project-tabs {
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    margin-left: -22px;
+    margin-right: -22px;
+    padding: 0 22px 4px;
+    scrollbar-width: none;
+  }
+  .project-tabs::-webkit-scrollbar { display: none; }
   .contact-links { flex-direction: column; align-items: stretch; gap: 12px; }
   .contact-links a { text-align: center; }
 }
